@@ -1,61 +1,50 @@
 {
     "name": "avto-dev/firebase-notifications-laravel",
-    "description": "Some package description goes here",
-    "keywords": [
-        "some",
-        "keywords",
-        "goes",
-        "here"
-    ],
-    "type": "library",
+    "description": "Firebase cloud messaging channel for laravel",
+    "homepage": "https://github.com/avto-dev/firebase-notifications-laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": "avto-dev",
-            "homepage": "https://github.com/avto-dev"
+            "name": ":author_name",
+            "email": "jetexe2@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "ext-json": "*",
-        "ext-mbstring": "*",
-        "illuminate/support": ">=5.5.0 <5.8.0"
+        "php": "^7.0",
+        "google/apiclient": "^2.0",
+        "guzzlehttp/guzzle": "^6.0",
+        "illuminate/support": "^5.1|^5.2|^5.3",
+        "illuminate/notifications": ">=5.3 <5.8"
     },
     "require-dev": {
-        "laravel/laravel": ">=5.5.0 <5.8.0",
-        "phpunit/phpunit": "~5.7.10 || ^6.4 || ~7.0",
-        "mockery/mockery": "0.9.* || ~1.0",
-        "symfony/var-dumper": "~3.2 || ^4.0",
-        "phpstan/phpstan": "~0.9 || ^0.10"
+        "avto-dev/dev-tools": "^1.5",
+        "laravel/laravel": ">=5.3 <5.8",
+        "mockery/mockery": "^1.2",
+        "phpunit/phpunit": "~5.4 || ^6.5 || ~7.0 <7.5.0"
     },
     "autoload": {
         "psr-4": {
-            "AvtoDev\\FirebaseNotificationsChannel\\": "src"
+            "AvtoDev\\FirebaseCloudMessaging\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AvtoDev\\FirebaseNotificationsChannel\\Tests\\": "tests"
+            "AvtoDev\\FirebaseCloudMessaging\\Test\\": "tests"
         }
     },
     "scripts": {
         "test": "@php ./vendor/bin/phpunit --no-coverage",
-        "test-cover": "@php ./vendor/bin/phpunit --coverage-html='./coverage/html'",
-        "phpstan": "@php ./vendor/bin/phpstan analyze --no-progress --ansi --level=max ./src"
+        "test-cover": "@php ./vendor/bin/phpunit"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AvtoDev\\FirebaseNotificationsChannel\\LaravelPackageServiceProvider"
+                "AvtoDev\\FirebaseCloudMessaging\\FcmServiceProvider"
             ]
         }
     },
-    "support": {
-        "issues": "https://github.com/avto-dev/firebase-notifications-laravel/issues",
-        "source": "https://github.com/avto-dev/firebase-notifications-laravel"
-    },
     "config": {
         "sort-packages": true
-    },
-    "prefer-stable": true
+    }
 }
