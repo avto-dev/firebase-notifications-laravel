@@ -14,8 +14,8 @@
         "php": "^7.0",
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^6.0",
-        "illuminate/support": "^5.1|^5.2|^5.3",
-        "illuminate/notifications": ">=5.3 <5.8"
+        "illuminate/notifications": ">=5.3 <5.8",
+        "illuminate/support": "^>=5.3 <5.8"
     },
     "require-dev": {
         "avto-dev/dev-tools": "^1.5",
