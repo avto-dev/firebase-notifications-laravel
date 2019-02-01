@@ -14,14 +14,14 @@
         "php": "^7.0",
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^6.0",
-        "illuminate/notifications": ">=5.3 <5.8",
-        "illuminate/support": ">=5.3 <5.8"
+        "illuminate/notifications": ">=5.4 <5.8",
+        "illuminate/support": ">=5.4 <5.8"
     },
     "require-dev": {
         "avto-dev/dev-tools": "^1.5",
-        "laravel/laravel": ">=5.3 <5.8",
+        "laravel/laravel": ">=5.4 <5.8",
         "mockery/mockery": "^1.2",
-        "phpunit/phpunit": "~5.4 || ^6.5 || ~7.0 <7.5.0"
+        "phpunit/phpunit": "^6.5 || ~7.0 <7.5.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,6 +45,6 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": false
     }
 }
