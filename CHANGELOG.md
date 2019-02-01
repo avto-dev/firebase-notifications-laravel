@@ -8,15 +8,15 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
--
-
 ### Changed
-
-- 
 
 ### Removed
 
--
+## v1.0.0 - 2019-02-01
+
+### Added
+
+- Basic code
 
 [keepachangelog]:https://keepachangelog.com/en/1.0.0/
 [semver]:https://semver.org/spec/v2.0.0.html
