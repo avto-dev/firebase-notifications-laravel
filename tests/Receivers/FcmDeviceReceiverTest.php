@@ -16,6 +16,7 @@ class FcmDeviceReceiverTest extends AbstractReceiverTest
 
     /**
      * @covers ::getToken()
+     *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testGetTarget()
@@ -25,6 +26,7 @@ class FcmDeviceReceiverTest extends AbstractReceiverTest
 
     /**
      * {@inheritdoc}
+     *
      * @return FcmNotificationReceiverInterface|FcmDeviceReceiver
      */
     protected function getReceiver()

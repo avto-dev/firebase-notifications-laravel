@@ -48,7 +48,7 @@ class FcmServiceProvider extends ServiceProvider
 
                 return new FcmClient(
                     $http_client,
-                    'https://fcm.googleapis.com/v1/projects/'.$credentials['project_id'].'/messages:send'
+                    'https://fcm.googleapis.com/v1/projects/' . $credentials['project_id'] . '/messages:send'
                 );
             });
     }

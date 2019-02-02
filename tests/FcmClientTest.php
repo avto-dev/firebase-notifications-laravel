@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
-use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 
 /**
  * Class FcmClientTest.
@@ -32,6 +32,7 @@ class FcmClientTest extends AbstractTestCase
 
     /**
      * @covers ::sendMessage()
+     *
      * @throws \InvalidArgumentException
      */
     public function testSendMessage()
@@ -90,8 +91,8 @@ class FcmClientTest extends AbstractTestCase
     public function testConstructor()
     {
         $http_client = new Client;
-        $endpoint = 'test';
-        $client = new FcmClient($http_client, $endpoint);
+        $endpoint    = 'test';
+        $client      = new FcmClient($http_client, $endpoint);
 
         static::assertEquals($endpoint, static::getProperty($client, 'endpoint'));
         static::assertEquals($http_client, static::getProperty($client, 'http_client'));

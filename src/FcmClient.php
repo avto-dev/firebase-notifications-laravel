@@ -26,7 +26,7 @@ class FcmClient
     public function __construct(Client $http_client, $endpoint)
     {
         $this->http_client = $http_client;
-        $this->endpoint = $endpoint;
+        $this->endpoint    = $endpoint;
     }
 
     /**
@@ -63,7 +63,7 @@ class FcmClient
             }
 
             if (\is_array($value)) {
-                $value = $this->filterPayload($value);
+                $value         = $this->filterPayload($value);
                 $payload[$key] = $value;
             }
 

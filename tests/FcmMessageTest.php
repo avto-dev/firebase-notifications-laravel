@@ -56,7 +56,7 @@ class FcmMessageTest extends AbstractTestCase
      */
     public function testSetters($property, $value, $path = null)
     {
-        $this->fcm_message->{'set'.Str::title($property)}($value);
+        $this->fcm_message->{'set' . Str::title($property)}($value);
 
         static::assertEquals($value, static::getProperty($this->fcm_message, $property));
 
@@ -65,7 +65,7 @@ class FcmMessageTest extends AbstractTestCase
         }
 
         if ($value instanceof Arrayable) {
-            static::assertEquals($value, $this->fcm_message->{'get'.Str::title($property)}());
+            static::assertEquals($value, $this->fcm_message->{'get' . Str::title($property)}());
             $value = $value->toArray();
         }
 

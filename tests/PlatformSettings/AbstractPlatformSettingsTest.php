@@ -14,11 +14,6 @@ abstract class AbstractPlatformSettingsTest extends AbstractTestCase
     abstract public function dataProvider();
 
     /**
-     * @return Arrayable
-     */
-    abstract protected function getPlatformSetting();
-
-    /**
      * @param $property
      * @param $array_path
      * @param $value
@@ -32,9 +27,14 @@ abstract class AbstractPlatformSettingsTest extends AbstractTestCase
     {
         $platform_settings = $this->getPlatformSetting();
 
-        $platform_settings->{'set'.Str::camel($property)}($value);
+        $platform_settings->{'set' . Str::camel($property)}($value);
 
         static::assertEquals($value, static::getProperty($platform_settings, $property));
         static::assertEquals($value, array_get($platform_settings->toArray(), $array_path));
     }
+
+    /**
+     * @return Arrayable
+     */
+    abstract protected function getPlatformSetting();
 }

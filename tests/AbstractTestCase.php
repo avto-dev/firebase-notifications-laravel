@@ -28,7 +28,7 @@ abstract class AbstractTestCase extends AbstractLaravelTestCase
 
             return new FcmClient(
                 $http_client,
-                'https://fcm.googleapis.com/v1/projects/'.config('fcm.project_id').'/messages:send'
+                'https://fcm.googleapis.com/v1/projects/' . config('fcm.project_id') . '/messages:send'
             );
         });
     }

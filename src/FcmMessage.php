@@ -59,7 +59,7 @@ class FcmMessage implements Arrayable
     {
         $this->android = new AndroidFcmPlatformSettings;
         $this->webpush = new WebpushFcmPlatformSettings;
-        $this->apns = new AppleFcmPlatformSettings;
+        $this->apns    = new AppleFcmPlatformSettings;
     }
 
     /**

@@ -197,6 +197,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * notification itself.
      *
      * @var string
+     *
+     * @param mixed $value
      */
     public function setBadge($value)
     {
@@ -207,6 +209,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * The text direction of the notification as specified in the constructor's options parameter.
      *
      * @var string
+     *
+     * @param mixed $value
      */
     public function setDir($value)
     {
@@ -217,6 +221,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * The language code of the notification as specified in the constructor's options parameter.
      *
      * @var string
+     *
+     * @param mixed $value
      */
     public function setLang($value)
     {
@@ -227,6 +233,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * The ID of the notification (if any) as specified in the constructor's options parameter.
      *
      * @var string
+     *
+     * @param mixed $value
      */
     public function setTag($value)
     {
@@ -237,6 +245,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * The URL of the image used as an icon of the notification as specified in the constructor's options parameter.
      *
      * @var string
+     *
+     * @param mixed $value
      */
     public function setIcon($value)
     {
@@ -248,6 +258,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * parameter.
      *
      * @var string
+     *
+     * @param mixed $value
      */
     public function setImage($value)
     {
@@ -258,6 +270,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * Specifies whether the user should be notified after a new notification replaces an old one.
      *
      * @var bool
+     *
+     * @param mixed $value
      */
     public function setRenotify($value)
     {
@@ -269,6 +283,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * closing automatically.
      *
      * @var bool
+     *
+     * @param mixed $value
      */
     public function setRequireInteraction($value)
     {
@@ -278,6 +294,8 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * Specifies whether the notification should be silent — i.e., no sounds or vibrations should be issued, regardless
      * of the device settings.
+     *
+     * @param mixed $value
      */
     public function setSilent($value)
     {
@@ -288,6 +306,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * Specifies the time at which a notification is created or applicable (past, present, or future).
      *
      * @var int
+     *
+     * @param mixed $value
      */
     public function setTimestamp($value)
     {
@@ -298,6 +318,8 @@ class WebpushFcmPlatformSettings implements Arrayable
      * Specifies a vibration pattern for devices with vibration hardware to emit.
      *
      * @var bool
+     *
+     * @param mixed $value
      */
     public function setVibrate($value)
     {
