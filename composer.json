@@ -20,6 +20,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "google/apiclient": "^2.2",
+        "guzzlehttp/guzzle": "~6.0",
         "illuminate/notifications": ">=5.5 <5.8",
         "illuminate/support": ">=5.5.0 <5.8.0",
         "tarampampam/wrappers-php": "^1.4"
