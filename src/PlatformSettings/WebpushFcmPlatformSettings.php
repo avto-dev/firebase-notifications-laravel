@@ -120,7 +120,6 @@ class WebpushFcmPlatformSettings implements Arrayable
 
     /**
      * Specifies the time at which a notification is created or applicable (past, present, or future).
-     *
      */
     protected $timestamp;
 
