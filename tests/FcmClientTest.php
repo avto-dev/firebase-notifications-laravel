@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
-use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
+use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 
 /**
  * Class FcmClientTest.

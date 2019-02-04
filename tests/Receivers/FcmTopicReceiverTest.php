@@ -16,6 +16,7 @@ class FcmTopicReceiverTest extends AbstractReceiverTest
 
     /**
      * @covers ::getTopic()
+     *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testGetTarget()
