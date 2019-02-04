@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
-use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
+use Tarampampam\Wrappers\Json;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
+use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
-use Tarampampam\Wrappers\Json;
 
 /**
  * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider

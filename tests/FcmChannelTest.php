@@ -2,13 +2,13 @@
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
-use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmTopicReceiver;

@@ -3,10 +3,10 @@
 namespace AvtoDev\FirebaseNotificationsChannel;
 
 use GuzzleHttp\Client;
+use Tarampampam\Wrappers\Json;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
-use Tarampampam\Wrappers\Json;
 
 class FcmServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,6 @@ class FcmServiceProvider extends ServiceProvider
         $this->app->when(FcmChannel::class)
             ->needs(FcmClient::class)
             ->give(function (Application $app) {
-
                 $credentials = $this->getCredentials($app);
 
                 //Build google client
@@ -39,10 +38,11 @@ class FcmServiceProvider extends ServiceProvider
     /**
      * @param Application $app
      *
-     * @return array
      * @throws \InvalidArgumentException
      * @throws \LogicException
      * @throws JsonEncodeDecodeException
+     *
+     * @return array
      */
     protected function getCredentials(Application $app): array
     {
