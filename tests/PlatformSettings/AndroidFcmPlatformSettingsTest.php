@@ -29,8 +29,8 @@ class AndroidFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
             ['click_action', 'notification.click_action', 'click_action_test'],
             ['body_loc_key', 'notification.body_loc_key', 'body_loc_key_test'],
             ['body_loc_args', 'notification.body_loc_args', ['val1', 'val2']],
-            ['title_loc_key', 'notification.title_loc_key', ['title1', 'title2']],
-            ['title_loc_args', 'notification.title_loc_args', 'title_loc_args_test'],
+            ['title_loc_key', 'notification.title_loc_key', 'title1'],
+            ['title_loc_args', 'notification.title_loc_args', ['title_loc_args_test']],
             ['channel_id', 'notification.channel_id', 'channel_id_test'],
         ];
     }

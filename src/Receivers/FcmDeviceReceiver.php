@@ -14,7 +14,7 @@ class FcmDeviceReceiver implements FcmNotificationReceiverInterface
      *
      * @param string $token
      */
-    public function __construct($token)
+    public function __construct(string $token)
     {
         $this->token = $token;
     }
@@ -22,7 +22,7 @@ class FcmDeviceReceiver implements FcmNotificationReceiverInterface
     /**
      * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }
@@ -30,7 +30,7 @@ class FcmDeviceReceiver implements FcmNotificationReceiverInterface
     /**
      * {@inheritdoc}
      */
-    public function getTarget()
+    public function getTarget(): array
     {
         return ['token' => $this->getToken()];
     }

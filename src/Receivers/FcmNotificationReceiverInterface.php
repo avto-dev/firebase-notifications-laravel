@@ -9,5 +9,5 @@ interface FcmNotificationReceiverInterface
      *
      * @return array
      */
-    public function getTarget();
+    public function getTarget(): array ;
 }

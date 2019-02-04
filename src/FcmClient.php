@@ -21,12 +21,12 @@ class FcmClient
      * FcmClient constructor.
      *
      * @param Client $http_client
-     * @param        $endpoint
+     * @param string $endpoint
      */
-    public function __construct(Client $http_client, $endpoint)
+    public function __construct(Client $http_client, string $endpoint)
     {
         $this->http_client = $http_client;
-        $this->endpoint = $endpoint;
+        $this->endpoint    = $endpoint;
     }
 
     /**
@@ -55,7 +55,7 @@ class FcmClient
      *
      * @return array
      */
-    protected function filterPayload($payload)
+    protected function filterPayload(array $payload): array
     {
         foreach ($payload as $key => $value) {
             if ($value === null || $value === '') {
@@ -63,7 +63,7 @@ class FcmClient
             }
 
             if (\is_array($value)) {
-                $value = $this->filterPayload($value);
+                $value         = $this->filterPayload($value);
                 $payload[$key] = $value;
             }
 

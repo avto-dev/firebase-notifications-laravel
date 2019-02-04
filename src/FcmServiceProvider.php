@@ -5,6 +5,8 @@ namespace AvtoDev\FirebaseNotificationsChannel;
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
+use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
+use Tarampampam\Wrappers\Json;
 
 class FcmServiceProvider extends ServiceProvider
 {
@@ -16,27 +18,8 @@ class FcmServiceProvider extends ServiceProvider
         $this->app->when(FcmChannel::class)
             ->needs(FcmClient::class)
             ->give(function (Application $app) {
-                /** @var \Illuminate\Config\Repository $config */
-                $config = $app->make('config');
-                $config_driver = $config->get('services.fcm.driver');
 
-                if ($config_driver === 'file') {
-                    $credentials_path = $config->get('services.fcm.file');
-
-                    if (! \file_exists($credentials_path)) {
-                        throw new \InvalidArgumentException('file does not exist');
-                    }
-
-                    $json = \file_get_contents($credentials_path);
-
-                    if (! $credentials = \json_decode($json, true)) {
-                        throw new \LogicException('invalid json for auth config');
-                    }
-                } elseif ($config_driver === 'config') {
-                    $credentials = $config->get('services.fcm.credentials');
-                } else {
-                    throw new \InvalidArgumentException('Fcm driver not set');
-                }
+                $credentials = $this->getCredentials($app);
 
                 //Build google client
                 $google_client = new \Google_Client;
@@ -48,8 +31,41 @@ class FcmServiceProvider extends ServiceProvider
 
                 return new FcmClient(
                     $http_client,
-                    'https://fcm.googleapis.com/v1/projects/'.$credentials['project_id'].'/messages:send'
+                    'https://fcm.googleapis.com/v1/projects/' . $credentials['project_id'] . '/messages:send'
                 );
             });
+    }
+
+    /**
+     * @param Application $app
+     *
+     * @return array
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
+     * @throws JsonEncodeDecodeException
+     */
+    protected function getCredentials(Application $app): array
+    {
+        /** @var \Illuminate\Config\Repository $config */
+        $config        = $app->make('config');
+        $config_driver = $config->get('services.fcm.driver');
+
+        if ($config_driver === 'file') {
+            $credentials_path = $config->get('services.fcm.file');
+
+            if (! \file_exists($credentials_path)) {
+                throw new \InvalidArgumentException('file does not exist');
+            }
+
+            $json = \file_get_contents($credentials_path);
+
+            $credentials = Json::decode($json);
+        } elseif ($config_driver === 'config') {
+            $credentials = $config->get('services.fcm.credentials');
+        } else {
+            throw new \InvalidArgumentException('Fcm driver not set');
+        }
+
+        return $credentials;
     }
 }

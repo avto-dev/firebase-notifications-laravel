@@ -32,6 +32,7 @@ class FcmClientTest extends AbstractTestCase
 
     /**
      * @covers ::sendMessage()
+     *
      * @throws \InvalidArgumentException
      */
     public function testSendMessage()
@@ -44,14 +45,12 @@ class FcmClientTest extends AbstractTestCase
     }
 
     /**
-     * Test remove empty values.
-     *
      * @covers ::filterPayload()
      *
      * @throws \ReflectionException
      * @throws InvalidArgumentException
      */
-    public function testFilterPayload()
+    public function testFilterPayloadForRemoveEmptyValue()
     {
         $unfiltered_payload = [
             'foo'   => 'bar',
@@ -90,8 +89,8 @@ class FcmClientTest extends AbstractTestCase
     public function testConstructor()
     {
         $http_client = new Client;
-        $endpoint = 'test';
-        $client = new FcmClient($http_client, $endpoint);
+        $endpoint    = 'test';
+        $client      = new FcmClient($http_client, $endpoint);
 
         static::assertEquals($endpoint, static::getProperty($client, 'endpoint'));
         static::assertEquals($http_client, static::getProperty($client, 'http_client'));

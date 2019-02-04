@@ -20,7 +20,7 @@ class WebPushFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
             ['actions', 'notification.actions', ['test_action_1', 'test_action_2']],
             ['badge', 'notification.badge', 'test_badge'],
             ['body', 'notification.body', 'test_body'],
-            ['data', 'notification.data', 'test_data'],
+            ['data', 'notification.data', ['test_data']],
             ['dir', 'notification.dir', 'test_dir'],
             ['lang', 'notification.lang', 'test_lang'],
             ['tag', 'notification.tag', 'test_tag'],

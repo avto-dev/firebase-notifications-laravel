@@ -137,7 +137,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param array $headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(array $headers)
     {
         $this->headers = $headers;
     }
@@ -147,7 +147,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param array $data
      */
-    public function setData($data)
+    public function setData(array $data)
     {
         $this->data = $data;
     }
@@ -157,7 +157,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $link
      */
-    public function setLink($link)
+    public function setLink(string $link)
     {
         $this->link = $link;
     }
@@ -167,7 +167,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -177,7 +177,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $body
      */
-    public function setBody($body)
+    public function setBody(string $body)
     {
         $this->body = $body;
     }
@@ -187,7 +187,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param array $value
      */
-    public function setActions($value)
+    public function setActions(array $value)
     {
         $this->actions = $value;
     }
@@ -198,7 +198,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var string
      */
-    public function setBadge($value)
+    public function setBadge(string $value)
     {
         $this->badge = $value;
     }
@@ -208,7 +208,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var string
      */
-    public function setDir($value)
+    public function setDir(string $value)
     {
         $this->dir = $value;
     }
@@ -218,7 +218,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var string
      */
-    public function setLang($value)
+    public function setLang(string $value)
     {
         $this->lang = $value;
     }
@@ -228,7 +228,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var string
      */
-    public function setTag($value)
+    public function setTag(string $value)
     {
         $this->tag = $value;
     }
@@ -238,7 +238,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var string
      */
-    public function setIcon($value)
+    public function setIcon(string $value)
     {
         $this->icon = $value;
     }
@@ -249,7 +249,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var string
      */
-    public function setImage($value)
+    public function setImage(string $value)
     {
         $this->image = $value;
     }
@@ -259,7 +259,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var bool
      */
-    public function setRenotify($value)
+    public function setRenotify(bool $value)
     {
         $this->renotify = $value;
     }
@@ -270,7 +270,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var bool
      */
-    public function setRequireInteraction($value)
+    public function setRequireInteraction(bool $value)
     {
         $this->requireInteraction = $value;
     }
@@ -278,8 +278,10 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * Specifies whether the notification should be silent — i.e., no sounds or vibrations should be issued, regardless
      * of the device settings.
+     *
+     * @param bool $value
      */
-    public function setSilent($value)
+    public function setSilent(bool $value)
     {
         $this->silent = $value;
     }
@@ -289,7 +291,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var int
      */
-    public function setTimestamp($value)
+    public function setTimestamp(int $value)
     {
         $this->timestamp = $value;
     }
@@ -299,7 +301,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @var bool
      */
-    public function setVibrate($value)
+    public function setVibrate(bool $value)
     {
         $this->vibrate = $value;
     }
@@ -309,7 +311,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'headers'      => $this->headers,

@@ -12,7 +12,7 @@ class AndroidFcmPlatformSettings implements Arrayable
     /**
      * Priority settings.
      */
-    const PRIORITY_HIGH = 'HIGH';
+    const PRIORITY_HIGH   = 'HIGH';
 
     const PRIORITY_NORMAL = 'NORMAL';
 
@@ -159,7 +159,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $collapse_key
      */
-    public function setCollapseKey($collapse_key)
+    public function setCollapseKey(string $collapse_key)
     {
         $this->collapse_key = $collapse_key;
     }
@@ -169,7 +169,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $priority
      */
-    public function setPriority($priority)
+    public function setPriority(string $priority)
     {
         $this->priority = $priority;
     }
@@ -179,7 +179,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $ttl
      */
-    public function setTtl($ttl)
+    public function setTtl(string $ttl)
     {
         $this->ttl = $ttl;
     }
@@ -189,7 +189,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $restricted_package_name
      */
-    public function setRestrictedPackageName($restricted_package_name)
+    public function setRestrictedPackageName(string $restricted_package_name)
     {
         $this->restricted_package_name = $restricted_package_name;
     }
@@ -200,7 +200,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param array $data
      */
-    public function setData($data)
+    public function setData(array $data)
     {
         $this->data = $data;
     }
@@ -210,7 +210,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -220,7 +220,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $body
      */
-    public function setBody($body)
+    public function setBody(string $body)
     {
         $this->body = $body;
     }
@@ -232,7 +232,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $icon
      */
-    public function setIcon($icon)
+    public function setIcon(string $icon)
     {
         $this->icon = $icon;
     }
@@ -242,7 +242,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $color
      */
-    public function setColor($color)
+    public function setColor(string $color)
     {
         $this->color = $color;
     }
@@ -254,7 +254,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $sound
      */
-    public function setSound($sound)
+    public function setSound(string $sound)
     {
         $this->sound = $sound;
     }
@@ -267,7 +267,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $tag
      */
-    public function setTag($tag)
+    public function setTag(string $tag)
     {
         $this->tag = $tag;
     }
@@ -278,7 +278,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $click_action
      */
-    public function setClickAction($click_action)
+    public function setClickAction(string $click_action)
     {
         $this->click_action = $click_action;
     }
@@ -289,7 +289,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $body_loc_key
      */
-    public function setBodyLocKey($body_loc_key)
+    public function setBodyLocKey(string $body_loc_key)
     {
         $this->body_loc_key = $body_loc_key;
     }
@@ -300,7 +300,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string[] $body_loc_args
      */
-    public function setBodyLocArgs($body_loc_args)
+    public function setBodyLocArgs(array $body_loc_args)
     {
         $this->body_loc_args = $body_loc_args;
     }
@@ -311,7 +311,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $title_loc_key
      */
-    public function setTitleLocKey($title_loc_key)
+    public function setTitleLocKey(string $title_loc_key)
     {
         $this->title_loc_key = $title_loc_key;
     }
@@ -322,7 +322,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string[] $title_loc_args
      */
-    public function setTitleLocArgs($title_loc_args)
+    public function setTitleLocArgs(array $title_loc_args)
     {
         $this->title_loc_args = $title_loc_args;
     }
@@ -334,7 +334,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @param string $channel_id
      */
-    public function setChannelId($channel_id)
+    public function setChannelId(string $channel_id)
     {
         $this->channel_id = $channel_id;
     }
@@ -344,7 +344,7 @@ class AndroidFcmPlatformSettings implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'collapse_key'            => $this->collapse_key,

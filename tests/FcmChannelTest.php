@@ -2,6 +2,10 @@
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
+use AvtoDev\FirebaseNotificationsChannel\FcmClient;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
@@ -11,8 +15,6 @@ use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmTopicReceiver;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 
 /**
- * Class FcmChannelTest.
- *
  * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\FcmChannel
  */
 class FcmChannelTest extends AbstractTestCase
@@ -32,7 +34,20 @@ class FcmChannelTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::__construct()
+     *
+     * @throws \ReflectionException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     */
+    public function testConstruct()
+    {
+        self::assertInstanceOf(FcmClient::class, self::getProperty($this->firebase_channel, 'fcm_client'));
+    }
+
+    /**
      * Success notification sending.
+     *
+     * @covers ::send()
      *
      * @throws \InvalidArgumentException
      * @throws CouldNotSendNotification
@@ -47,6 +62,8 @@ class FcmChannelTest extends AbstractTestCase
 
     /**
      * Check notification without "toFcm" method.
+     *
+     * @covers ::send()
      *
      * @throws CouldNotSendNotification
      */
@@ -63,7 +80,7 @@ class FcmChannelTest extends AbstractTestCase
     }
 
     /**
-     * Success notification sending.
+     * @covers ::send()
      *
      * @throws CouldNotSendNotification
      * @throws \InvalidArgumentException
@@ -76,6 +93,42 @@ class FcmChannelTest extends AbstractTestCase
         $this->mock_handler->append($response);
 
         $this->firebase_channel->send($this->getNotifiableMock(), $this->getNotificationMock());
+    }
+
+    /**
+     * @covers ::send()
+     *
+     * @throws CouldNotSendNotification
+     * @throws \InvalidArgumentException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     */
+    public function testNoSend()
+    {
+        $history_container = [];
+
+        $stack = HandlerStack::create();
+        // Add the history middleware to the handler stack.
+        $stack->push(Middleware::history($history_container));
+
+        $fcm_channel = new FcmChannel(
+            new FcmClient(
+                new Client(['handler' => $stack]),
+                ''
+            )
+        );
+
+        $fcm_channel->send(
+            $this
+                ->getMockBuilder(Notifiable::class)
+                ->setMethods(['routeNotificationForFcm'])
+                ->getMockForTrait(),
+            $this
+                ->getMockBuilder(Notification::class)
+                ->setMethods(['toFcm'])
+                ->getMock()
+        );
+
+        self::assertCount(0, $history_container);
     }
 
     /**

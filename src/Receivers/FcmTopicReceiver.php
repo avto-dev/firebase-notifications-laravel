@@ -30,7 +30,7 @@ class FcmTopicReceiver implements FcmNotificationReceiverInterface
     /**
      * {@inheritdoc}
      */
-    public function getTarget()
+    public function getTarget(): array
     {
         return ['topic' => $this->getTopic()];
     }

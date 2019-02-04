@@ -15,6 +15,9 @@ abstract class AbstractTestCase extends AbstractLaravelTestCase
      */
     protected $mock_handler;
 
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();

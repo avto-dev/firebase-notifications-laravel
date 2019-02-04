@@ -135,7 +135,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param array $headers
      */
-    public function setHeaders($headers)
+    public function setHeaders(array $headers)
     {
         $this->headers = $headers;
     }
@@ -147,7 +147,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param int $badge
      */
-    public function setBadge($badge)
+    public function setBadge(int $badge)
     {
         $this->badge = $badge;
     }
@@ -159,7 +159,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $sound
      */
-    public function setSound($sound)
+    public function setSound(string $sound)
     {
         $this->sound = $sound;
     }
@@ -170,7 +170,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param int $content_available
      */
-    public function setContentAvailable($content_available)
+    public function setContentAvailable(int $content_available)
     {
         $this->content_available = $content_available;
     }
@@ -181,7 +181,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $category
      */
-    public function setCategory($category)
+    public function setCategory(string $category)
     {
         $this->category = $category;
     }
@@ -192,7 +192,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $thread_id
      */
-    public function setThreadId($thread_id)
+    public function setThreadId(string $thread_id)
     {
         $this->thread_id = $thread_id;
     }
@@ -204,7 +204,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -214,7 +214,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $body
      */
-    public function setBody($body)
+    public function setBody(string $body)
     {
         $this->body = $body;
     }
@@ -227,7 +227,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $title_loc_key
      */
-    public function setTitleLocKey($title_loc_key)
+    public function setTitleLocKey(string $title_loc_key)
     {
         $this->title_loc_key = $title_loc_key;
     }
@@ -239,7 +239,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string[] $title_loc_args
      */
-    public function setTitleLocArgs($title_loc_args)
+    public function setTitleLocArgs(array $title_loc_args)
     {
         $this->title_loc_args = $title_loc_args;
     }
@@ -251,7 +251,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $action_loc_key
      */
-    public function setActionLocKey($action_loc_key)
+    public function setActionLocKey(string $action_loc_key)
     {
         $this->action_loc_key = $action_loc_key;
     }
@@ -263,7 +263,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $loc_key
      */
-    public function setLocKey($loc_key)
+    public function setLocKey(string $loc_key)
     {
         $this->loc_key = $loc_key;
     }
@@ -273,7 +273,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string[] $loc_args
      */
-    public function setLocArgs($loc_args)
+    public function setLocArgs(array $loc_args)
     {
         $this->loc_args = $loc_args;
     }
@@ -286,7 +286,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $launch_image
      */
-    public function setLaunchImage($launch_image)
+    public function setLaunchImage(string $launch_image)
     {
         $this->launch_image = $launch_image;
     }
@@ -296,7 +296,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'headers' => $this->headers,

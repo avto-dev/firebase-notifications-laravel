@@ -21,14 +21,15 @@
         "ext-mbstring": "*",
         "google/apiclient": "^2.2",
         "illuminate/notifications": ">=5.5 <5.8",
-        "illuminate/support": ">=5.5.0 <5.8.0"
+        "illuminate/support": ">=5.5.0 <5.8.0",
+        "tarampampam/wrappers-php": "^1.4"
     },
     "require-dev": {
         "avto-dev/dev-tools": "^1.9",
         "laravel/laravel": ">=5.5.0 <5.8.0",
         "mockery/mockery": "0.9.* || ~1.0",
         "phpstan/phpstan": "~0.9 || ^0.10",
-        "phpunit/phpunit": "~5.7.10 || ^6.4 || ~7.0 <7.5.0",
+        "phpunit/phpunit": "~5.7.10 || ^6.4 || ^7.0",
         "symfony/var-dumper": "~3.2 || ^4.0"
     },
     "autoload": {

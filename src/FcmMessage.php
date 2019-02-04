@@ -7,9 +7,6 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettin
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSettings;
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings;
 
-/**
- * Message object contains all supported data and settings.
- */
 class FcmMessage implements Arrayable
 {
     /**
@@ -59,39 +56,47 @@ class FcmMessage implements Arrayable
     {
         $this->android = new AndroidFcmPlatformSettings;
         $this->webpush = new WebpushFcmPlatformSettings;
-        $this->apns = new AppleFcmPlatformSettings;
+        $this->apns    = new AppleFcmPlatformSettings;
     }
 
     /**
      * @return WebpushFcmPlatformSettings
      */
-    public function getWebpush()
+    public function getWebpush(): WebpushFcmPlatformSettings
     {
         return $this->webpush;
     }
 
     /**
      * @param WebpushFcmPlatformSettings $webpush
+     *
+     * @return self
      */
-    public function setWebpush(WebpushFcmPlatformSettings $webpush)
+    public function setWebpush(WebpushFcmPlatformSettings $webpush): self
     {
         $this->webpush = $webpush;
+
+        return $this;
     }
 
     /**
      * @return AppleFcmPlatformSettings
      */
-    public function getApns()
+    public function getApns(): AppleFcmPlatformSettings
     {
         return $this->apns;
     }
 
     /**
      * @param AppleFcmPlatformSettings $apns
+     *
+     * @return self
      */
-    public function setApns(AppleFcmPlatformSettings $apns)
+    public function setApns(AppleFcmPlatformSettings $apns): self
     {
         $this->apns = $apns;
+
+        return $this;
     }
 
     /**
@@ -103,9 +108,9 @@ class FcmMessage implements Arrayable
      *
      * @param array $data
      *
-     * @return $this
+     * @return self
      */
-    public function setData($data)
+    public function setData(array $data): self
     {
         $this->data = $data;
 
@@ -117,9 +122,9 @@ class FcmMessage implements Arrayable
      *
      * @param string $title
      *
-     * @return $this
+     * @return self
      */
-    public function setTitle($title)
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -131,9 +136,9 @@ class FcmMessage implements Arrayable
      *
      * @param string $body
      *
-     * @return $this
+     * @return self
      */
-    public function setBody($body)
+    public function setBody($body): self
     {
         $this->body = $body;
 
@@ -150,10 +155,14 @@ class FcmMessage implements Arrayable
 
     /**
      * @param AndroidFcmPlatformSettings $android
+     *
+     * @return self
      */
-    public function setAndroid(AndroidFcmPlatformSettings $android)
+    public function setAndroid(AndroidFcmPlatformSettings $android): self
     {
         $this->android = $android;
+
+        return $this;
     }
 
     /**
@@ -161,7 +170,7 @@ class FcmMessage implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'data'         => $this->data,
