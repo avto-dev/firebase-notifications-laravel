@@ -42,13 +42,13 @@ class FcmChannel
             return;
         }
 
-        if (! \method_exists($notification, 'toFcm')) {
+        if (! \method_exists($notification, $method_name = 'toFcm')) {
             throw CouldNotSendNotification::invalidNotification();
         }
 
         $response = $this->fcm_client->sendMessage(
             $route_notification_for_fcm,
-            $notification->toFcm()
+            $notification->{$method_name}()
         );
 
         if ($response->getStatusCode() !== 200) {
