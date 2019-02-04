@@ -57,7 +57,8 @@ class FcmServiceProvider extends ServiceProvider
                 throw new \InvalidArgumentException('file does not exist');
             }
 
-            $json = \file_get_contents($credentials_path);
+            $json = \file_get_contents($credentials_path)
+                ?: '';
 
             $credentials = Json::decode($json);
         } elseif ($config_driver === 'config') {
