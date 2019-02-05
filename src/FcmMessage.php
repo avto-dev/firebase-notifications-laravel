@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -148,7 +150,7 @@ class FcmMessage implements Arrayable
     /**
      * @return AndroidFcmPlatformSettings
      */
-    public function getAndroid()
+    public function getAndroid(): AndroidFcmPlatformSettings
     {
         return $this->android;
     }

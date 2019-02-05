@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Receivers;
 
 class FcmTopicReceiver implements FcmNotificationReceiverInterface

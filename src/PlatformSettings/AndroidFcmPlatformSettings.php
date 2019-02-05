@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\PlatformSettings;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -12,9 +14,8 @@ class AndroidFcmPlatformSettings implements Arrayable
     /**
      * Priority settings.
      */
-    const PRIORITY_HIGH   = 'HIGH';
-
-    const PRIORITY_NORMAL = 'NORMAL';
+    const PRIORITY_HIGH = 'HIGH',
+        PRIORITY_NORMAL = 'NORMAL';
 
     /**
      * An identifier of a group of messages that can be collapsed,

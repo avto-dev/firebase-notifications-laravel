@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Removed
 
-## v1.0.0 - 2019-02-01
+## v1.0.0
 
 ### Added
 

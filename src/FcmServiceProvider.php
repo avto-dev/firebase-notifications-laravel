@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel;
 
 use GuzzleHttp\Client;
@@ -36,6 +38,8 @@ class FcmServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get Fcm credentials
+     *
      * @param Application $app
      *
      * @throws \InvalidArgumentException
@@ -57,10 +61,7 @@ class FcmServiceProvider extends ServiceProvider
                 throw new \InvalidArgumentException('file does not exist');
             }
 
-            $json = \file_get_contents($credentials_path)
-                ?: '';
-
-            $credentials = Json::decode($json);
+            $credentials = Json::decode((string) \file_get_contents($credentials_path));
         } elseif ($config_driver === 'config') {
             $credentials = $config->get('services.fcm.credentials');
         } else {
