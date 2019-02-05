@@ -8,6 +8,7 @@ use GuzzleHttp\Handler\MockHandler;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\DevTools\Tests\PHPUnit\AbstractLaravelTestCase;
 
+
 abstract class AbstractTestCase extends AbstractLaravelTestCase
 {
     /**
