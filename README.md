@@ -36,16 +36,28 @@ This package makes it easy to send notifications using [Firebase][firebase_home]
 ## Installation
 
 ```bash
-composer require laravel-notification-channels/firebase-notifications-laravel "^1.0"
+$ composer require avto-dev/firebase-notifications-laravel "^1.0"
 ```
 
-First you must install the service provider (skip for Laravel>=5.5):
+> Installed `composer` is required ([how to install composer][getcomposer]).
+
+> You need to fix the major version of package.
+
+Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to manually register the service-provider. Otherwise you must add the service provider to the `providers` array in `./config/app.php`:
+
 ```php
-// config/app.php
-'providers' => [
-    ...
-    AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider::class,
-],
+<?php
+
+return [
+
+    // ...
+
+    'providers' => [
+        // ...
+        AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider::class,
+    ],
+    
+];
 ```
 
 If you wants to disable package service-provider auto discover, just add into your composer.json next lines:
@@ -64,71 +76,88 @@ If you wants to disable package service-provider auto discover, just add into yo
 
 ### Setting up the Firebase service
 
-You need to set up firebase channel in config file `config/services.conf`
+You need to set up firebase channel in config file `config/services.conf`.
 
 **To generate a private key file for your service account:**
 
-1.  In the Firebase console, open **Settings > [Service Accounts][firebase_service_account]**.
+1. In the Firebase console, open **Settings > [Service Accounts][firebase_service_account]**.
+1. Click **Generate New Private Key**, then confirm by clicking **Generate Key**.
+1. Securely store the JSON file containing the key. You'll need this JSON file to complete the next step.
 
-2.  Click **Generate New Private Key**, then confirm by clicking **Generate Key**.
-
-3.  Securely store the JSON file containing the key. You'll need this JSON file to complete the next step.
-
-Next select the "driver" `file` or `config` contains credintails for [Firebase service account][firebase_service_account]
+Next select the "driver" `file` or `config` contains credintails for [Firebase service account][firebase_service_account] in `./config/service.conf`:
 
 ```php
 <?php
-// config/service.conf
+
 return [
+
+    // ...
+
     /*
-     |--------------------------------------------------------------------------
-     | Firebas Settings section
-     |--------------------------------------------------------------------------
-     | Here you may specify some configs for FCM
-     */
-    'fcm' =>[
+    |--------------------------------------------------------------------------
+    | Firebase Settings section
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify some configs for FCM.
+    |
+    */
+    
+    'fcm' => [
+    
         /*
          |----------------------------------------------------------------------
          | Firebase service driver
          |----------------------------------------------------------------------
-         | Value `file` or `config`
-         |    - select `file` option to make service read json file
-         |    - select `config` option to set up all section in config file
+         |
+         | Value `file` or `config`:
+         |   - Select `file` option to make service read json file
+         |   - Select `config` option to set up all section in config file
+         |
          */
-        'driver'=>env('FCM_DRIVER','config'),
+         
+        'driver' => env('FCM_DRIVER', 'config'),
     
         /*
          |---------------------------------------------------------------------
          | FCM Drivers
          |---------------------------------------------------------------------
-         | Here are each of the database
+         |
+         | Here are each of the firebase.
+         |
          */
+         
         'drivers' => [
+        
             'file' => [
                 'path' => env('FCM_FILE_PATH', base_path('storage/fcm.json')),
-            ], 
-            'config'=>[
+            ],
+            
+            'config' => [
+            
                  /*
                  |------------------------------------------------------------
                  | Credentials 
                  |------------------------------------------------------------
-                 | Content of `firebase.json` file in config
-                 | using if `fcm.driver` is `config`
-                 | All fields required
+                 |
+                 | Content of `firebase.json` file in config. Using if 
+                 | `fcm.driver` is `config`. All fields required!
+                 |
                  */
+                 
                 'credentials'=>[
                      'private_key_id'              => env('FCM_CREDENTIALS_PRIVATE_KEY_ID', 'da80b3bbceaa554442ad67e6be361a66'),
-                     'private_key'                 => env('FCM_CREDENTIALS_PRIVATE_KEY','-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n'),
-                     'client_email'                => env('FCM_CREDENTIALS_CLIENT_EMAIL','firebase-adminsdk-mwax6@test.iam.gserviceaccount.com'),
+                     'private_key'                 => env('FCM_CREDENTIALS_PRIVATE_KEY', '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n'),
+                     'client_email'                => env('FCM_CREDENTIALS_CLIENT_EMAIL', 'firebase-adminsdk-mwax6@test.iam.gserviceaccount.com'),
                      'client_id'                   => env('FCM_CREDENTIALS_CLIENT_ID', '22021520333507180281'),
                      'auth_uri'                    => env('FCM_CREDENTIALS_AUTH_URI', 'https://accounts.google.com/o/oauth2/auth'),
                      'token_uri'                   => env('FCM_CREDENTIALS_TOKEN_URI', 'https://oauth2.googleapis.com/token'),
                      'auth_provider_x509_cert_url' => env('FCM_CREDENTIALS_AUTH_PROVIDER_CERT', 'https://www.googleapis.com/oauth2/v1/certs'),
                      'client_x509_cert_url'        => env('FCM_CREDENTIALS_CLIENT_CERT', 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-mwax6%40test.iam.gserviceaccount.com'),
-                ]    
-            ]
+                ],
+            ],
         ],    
     ],
+    
 ];
 ```
 
@@ -140,8 +169,8 @@ Now you can use the channel in your `via()` method inside the notification as we
 <?php
 
 use Illuminate\Notifications\Notification;
-use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
+use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
 
 class AccountApproved extends Notification
 {
@@ -184,24 +213,18 @@ class SomeNotifible
 
 ### Available Message methods
 
-This pakage supports all fields from [HTTP v1 FCM API][http_v1_fcm_api]
-Message class contains setters for all the fields
+This pakage supports all fields from [HTTP v1 FCM API][http_v1_fcm_api]. Message class contains setters for all the fields:
 
-| Field | Type |
-| ----- | ---- |
-| `data` | array |
-| `title` | string |
-| `body` | string |
-| `android` | [AndroidFcmPlatformSettings][android_fcm_platform_settings] |
-| `webpush` | [WebpushFcmPlatformSettings][webpush_fcm_platform_settings] |
-| `apns`    | [AppleFcmPlatformSettings][apns_fcm_platform_settings] |
+Field     | Type
+:-------: | ----
+`data`    | array
+`title`   | string
+`body`    | string
+`android` | [AndroidFcmPlatformSettings][android_fcm_platform_settings]
+`webpush` | [WebpushFcmPlatformSettings][webpush_fcm_platform_settings]
+`apns`    | [AppleFcmPlatformSettings][apns_fcm_platform_settings]
 
 [PlatformSettings][platform_settings] classes contain platform secific setters
-
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
 
@@ -209,13 +232,23 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 $ make test
 ```
 
+## Changes log
+
+[![Release date][badge_release_date]][link_releases]
+[![Commits since latest release][badge_commits_since_release]][link_commits]
+
+Changes log can be [found here][link_changes_log].
+
+## Support
+
+[![Issues][badge_issues]][link_issues]
+[![Issues][badge_pulls]][link_pulls]
+
+If you will find any package errors, please, [make an issue][link_create_issue] in current repository.
+
 ## Security
 
-If you discover any security related issues, please email jetexe2@gmail.com instead of using the issue tracker.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+If you discover any security related issues, please email `jetexe2@gmail.com` instead of using the issue tracker.
 
 ## Credits
 
@@ -226,7 +259,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
 
 [badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/firebase-notifications-laravel.svg?maxAge=180
 [badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/firebase-notifications-laravel.svg?longCache=true
