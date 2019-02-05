@@ -38,7 +38,7 @@ class FcmServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get Fcm credentials
+     * Get Fcm credentials.
      *
      * @param Application $app
      *
