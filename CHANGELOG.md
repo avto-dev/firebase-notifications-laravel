@@ -12,6 +12,12 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Removed
 
+## v1.0.1
+
+### Fixed
+
+- Fixed config structure
+
 ## v1.0.0
 
 ### Added

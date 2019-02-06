@@ -55,7 +55,7 @@ class FcmServiceProvider extends ServiceProvider
         $config_driver = $config->get('services.fcm.driver');
 
         if ($config_driver === 'file') {
-            $credentials_path = $config->get('services.fcm.file');
+            $credentials_path = $config->get('services.fcm.drivers.file.path', '');
 
             if (! \file_exists($credentials_path)) {
                 throw new \InvalidArgumentException('file does not exist');
@@ -63,7 +63,7 @@ class FcmServiceProvider extends ServiceProvider
 
             $credentials = Json::decode((string) \file_get_contents($credentials_path));
         } elseif ($config_driver === 'config') {
-            $credentials = $config->get('services.fcm.credentials');
+            $credentials = $config->get('services.fcm.drivers.config.credentials', []);
         } else {
             throw new \InvalidArgumentException('Fcm driver not set');
         }

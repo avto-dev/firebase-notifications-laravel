@@ -27,6 +27,10 @@ class FcmServiceProviderTest extends AbstractTestCase
     {
         parent::setUp();
         $this->service_provider = new FcmServiceProvider($this->app);
+
+        $stub_config = require __DIR__ . '/config/services.php';
+
+        $this->app->make('config')->set('services', $stub_config);
     }
 
     /**
@@ -84,21 +88,8 @@ class FcmServiceProviderTest extends AbstractTestCase
 
         $config->set('services.fcm.driver', 'config');
 
-        $credentials = ['type'                        => 'service_account',
-                        'project_id'                  => 'test',
-                        'private_key_id'              => 'da80b3bbceaa554442ad67e6be361a66',
-                        'private_key'                 => '-----BEGIN PRIVATE KEY-----\nQXJlIHlvdSByZWFseSB0aGluayBhJ20gc28gc3R1cGlkIHRvIGdpd\nmUgeW91IHJlYWwgcHJpdmF0ZSBrZXk/Ck5PISBJdCdzIGp1c3QgY\nSBmaWN0aW9uIGFuZCB0aGlzIG1lc3NhZ2UgaXMgdG8gc2hvcnQ=\n-----END PRIVATE KEY-----\n',
-                        'client_email'                => 'firebase-adminsdk-mwax6@test.iam.gserviceaccount.com',
-                        'client_id'                   => '22021520333507180281',
-                        'auth_uri'                    => 'https://accounts.google.com/o/oauth2/auth',
-                        'token_uri'                   => 'https://oauth2.googleapis.com/token',
-                        'auth_provider_x509_cert_url' => 'https://www.googleapis.com/oauth2/v1/certs',
-                        'client_x509_cert_url'        => 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-mwax6%40test.iam.gserviceaccount.com',
-        ];
-
-        $config->set('services.fcm.credentials', $credentials);
         self::assertEquals(
-            $credentials,
+            $config->get('services.fcm.drivers.config.credentials', []),
             self::callMethod($this->service_provider, 'getCredentials', [$this->app])
         );
     }
@@ -112,6 +103,7 @@ class FcmServiceProviderTest extends AbstractTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Fcm driver not set');
+
         self::callMethod($this->service_provider, 'getCredentials', [$this->app]);
     }
 
@@ -133,8 +125,7 @@ class FcmServiceProviderTest extends AbstractTestCase
 
         self::assertContains(
             'https://fcm.googleapis.com/v1/projects/test/messages:send',
-            self::getProperty($fcm_client,
-                'endpoint')
+            self::getProperty($fcm_client, 'endpoint')
         );
     }
 
@@ -147,6 +138,6 @@ class FcmServiceProviderTest extends AbstractTestCase
         $config = $this->app->make('config');
 
         $config->set('services.fcm.driver', 'file');
-        $config->set('services.fcm.file', $path);
+        $config->set('services.fcm.drivers.file.path', $path);
     }
 }
