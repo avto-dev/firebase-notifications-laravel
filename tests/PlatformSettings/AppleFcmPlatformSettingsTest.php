@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Tests\PlatformSettings;
 
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettings;
@@ -10,9 +12,9 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettin
 class AppleFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
 {
     /**
-     * @return array
+     * @return array[]
      */
-    public function dataProvider()
+    public function dataProvider(): array
     {
         return [
             ['headers', 'headers', ['test_header', 'test_header2']],
@@ -29,7 +31,7 @@ class AppleFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
             ['content_available', 'payload.aps.content-available', 234],
             ['category', 'payload.aps.category', 'category_test'],
             ['thread_id', 'payload.aps.thread-id', 'thread_id_test'],
-            ['mutable_content', 'payload.aps.mutable-content', 1],
+            ['mutable_content', 'payload.aps.mutable-content', true],
         ];
     }
 

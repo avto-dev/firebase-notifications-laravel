@@ -8,9 +8,6 @@ use Illuminate\Notifications\Notification;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmNotificationReceiverInterface;
 
-/**
- * Channel to send message to Firebase cloud message.
- */
 class FcmChannel
 {
     /**

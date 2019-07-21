@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use GuzzleHttp\Client;
@@ -28,7 +30,7 @@ class FcmChannelTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->firebase_channel = $this->app->make(FcmChannel::class);
@@ -40,7 +42,7 @@ class FcmChannelTest extends AbstractTestCase
      * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function testConstruct()
+    public function testConstruct(): void
     {
         self::assertInstanceOf(FcmClient::class, self::getProperty($this->firebase_channel, 'fcm_client'));
     }
@@ -53,7 +55,7 @@ class FcmChannelTest extends AbstractTestCase
      * @throws \InvalidArgumentException
      * @throws CouldNotSendNotification
      */
-    public function testSendSuccess()
+    public function testSendSuccess(): void
     {
         $response = new Response(200, [], \json_encode(['message_id' => 'test']));
         $this->mock_handler->append($response);
@@ -69,7 +71,7 @@ class FcmChannelTest extends AbstractTestCase
      *
      * @throws CouldNotSendNotification
      */
-    public function testSendNoToFcm()
+    public function testSendNoToFcm(): void
     {
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage('Can\'t convert notification to FCM message');
@@ -87,7 +89,7 @@ class FcmChannelTest extends AbstractTestCase
      * @throws CouldNotSendNotification
      * @throws \InvalidArgumentException
      */
-    public function testSendFailed()
+    public function testSendFailed(): void
     {
         $this->expectException(CouldNotSendNotification::class);
 
@@ -104,7 +106,7 @@ class FcmChannelTest extends AbstractTestCase
      * @throws \InvalidArgumentException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function testNoSend()
+    public function testNoSend(): void
     {
         $history_container = [];
 

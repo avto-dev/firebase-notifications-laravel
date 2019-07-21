@@ -51,7 +51,7 @@ return [
 
     'providers' => [
         // ...
-        AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider::class,
+        AvtoDev\FirebaseNotificationsChannel\ServiceProvider::class,
     ],
     
 ];

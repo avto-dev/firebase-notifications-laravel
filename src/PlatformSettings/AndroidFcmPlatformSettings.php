@@ -6,9 +6,6 @@ namespace AvtoDev\FirebaseNotificationsChannel\PlatformSettings;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-/**
- *  Android specific options for messages sent through FCM connection server.
- */
 class AndroidFcmPlatformSettings implements Arrayable
 {
     /**

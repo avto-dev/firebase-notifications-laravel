@@ -6,8 +6,11 @@ namespace AvtoDev\FirebaseNotificationsChannel\Exceptions;
 
 class CouldNotSendNotification extends \Exception
 {
-    public static function invalidNotification()
+    /**
+     * @return static
+     */
+    public static function invalidNotification(): self
     {
-        return new self('Can\'t convert notification to FCM message');
+        return new static('Can\'t convert notification to FCM message');
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use GuzzleHttp\Client;
@@ -15,7 +17,7 @@ abstract class AbstractTestCase extends AbstractLaravelTestCase
      */
     protected $mock_handler;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -33,9 +35,10 @@ abstract class AbstractTestCase extends AbstractLaravelTestCase
         });
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         \Mockery::close();
+
         parent::tearDown();
     }
 }

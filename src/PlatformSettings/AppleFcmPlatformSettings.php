@@ -6,9 +6,6 @@ namespace AvtoDev\FirebaseNotificationsChannel\PlatformSettings;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-/**
- * Apple Push Notification Service specific options.
- */
 class AppleFcmPlatformSettings implements Arrayable
 {
     /**

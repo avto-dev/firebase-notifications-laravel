@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Tests\Exceptions;
 
 use AvtoDev\FirebaseNotificationsChannel\Tests\AbstractTestCase;
@@ -17,7 +19,7 @@ class CouldNotSendNotificationTest extends AbstractTestCase
      *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function testInvalidNotification()
+    public function testInvalidNotification(): void
     {
         $this->assertInstanceOf(
             CouldNotSendNotification::class,

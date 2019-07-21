@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use GuzzleHttp\Client;
@@ -24,7 +26,7 @@ class FcmClientTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->firebase_client = $this->app->make(FcmClient::class);
@@ -35,7 +37,7 @@ class FcmClientTest extends AbstractTestCase
      *
      * @throws \InvalidArgumentException
      */
-    public function testSendMessage()
+    public function testSendMessage(): void
     {
         $response = new Response(200, [], \json_encode(['message_id' => 'test']));
         $this->mock_handler->append($response);
@@ -50,7 +52,7 @@ class FcmClientTest extends AbstractTestCase
      * @throws \ReflectionException
      * @throws InvalidArgumentException
      */
-    public function testFilterPayloadForRemoveEmptyValue()
+    public function testFilterPayloadForRemoveEmptyValue(): void
     {
         $unfiltered_payload = [
             'foo'   => 'bar',
@@ -86,7 +88,7 @@ class FcmClientTest extends AbstractTestCase
      * @throws \InvalidArgumentException
      * @throws \ReflectionException
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $http_client = new Client;
         $endpoint    = 'test';

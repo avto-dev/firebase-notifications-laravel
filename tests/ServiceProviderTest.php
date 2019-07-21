@@ -7,26 +7,26 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 use Tarampampam\Wrappers\Json;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
-use AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider;
+use AvtoDev\FirebaseNotificationsChannel\ServiceProvider;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 /**
- * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\FcmServiceProvider
+ * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\ServiceProvider
  */
-class FcmServiceProviderTest extends AbstractTestCase
+class ServiceProviderTest extends AbstractTestCase
 {
     /**
-     * @var FcmServiceProvider
+     * @var ServiceProvider
      */
     protected $service_provider;
 
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->service_provider = new FcmServiceProvider($this->app);
+        $this->service_provider = new ServiceProvider($this->app);
 
         $stub_config = require __DIR__ . '/config/services.php';
 
@@ -40,7 +40,7 @@ class FcmServiceProviderTest extends AbstractTestCase
      * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function testGetCredentialsFromFile()
+    public function testGetCredentialsFromFile(): void
     {
         $this->setUpConfigFile();
         self::assertEquals(
@@ -54,7 +54,7 @@ class FcmServiceProviderTest extends AbstractTestCase
      *
      * @throws \ReflectionException
      */
-    public function testGetCredentialsFileNotFound()
+    public function testGetCredentialsFileNotFound(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('file does not exist');
@@ -68,7 +68,7 @@ class FcmServiceProviderTest extends AbstractTestCase
      *
      * @throws \ReflectionException
      */
-    public function testGetCredentialsFromFileInvalidJson()
+    public function testGetCredentialsFromFileInvalidJson(): void
     {
         $this->expectException(JsonEncodeDecodeException::class);
         $this->setUpConfigFile(__DIR__ . '/Stubs/invalid_firebase.json');
@@ -81,7 +81,7 @@ class FcmServiceProviderTest extends AbstractTestCase
      * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function testGetCredentialsFromConfig()
+    public function testGetCredentialsFromConfig(): void
     {
         /** @var \Illuminate\Config\Repository $config */
         $config = $this->app->make('config');
@@ -99,7 +99,7 @@ class FcmServiceProviderTest extends AbstractTestCase
      *
      * @throws \ReflectionException
      */
-    public function testGetCredentialsDriverNotSet()
+    public function testGetCredentialsDriverNotSet(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Fcm driver not set');
@@ -113,7 +113,7 @@ class FcmServiceProviderTest extends AbstractTestCase
      * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function testBoot()
+    public function testBoot(): void
     {
         $this->setUpConfigFile();
         $this->service_provider->boot();

@@ -6,9 +6,6 @@ namespace AvtoDev\FirebaseNotificationsChannel\PlatformSettings;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-/**
- * Webpush protocol options.
- */
 class WebpushFcmPlatformSettings implements Arrayable
 {
     /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\FirebaseNotificationsChannel\Testss\Traits;
 
 use Illuminate\Contracts\Console\Kernel;
