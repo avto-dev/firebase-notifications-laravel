@@ -21,26 +21,7 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
     protected $mock_handler;
 
     /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        /** @var \Illuminate\Foundation\Application $app */
-        $app = require __DIR__ . '/../vendor/laravel/laravel/bootstrap/app.php';
-
-        $app->make(Kernel::class)->bootstrap();
-
-        $app->make('config')->set('services', require __DIR__ . '/config/services.php');
-
-        $app->register(ServiceProvider::class);
-
-        return $app;
-    }
-
-    /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUp(): void
     {
@@ -61,13 +42,32 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function tearDown(): void
     {
         \Mockery::close(); // @todo: delete this
 
         parent::tearDown();
+    }
+
+    /**
+     * Creates the application.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    public function createApplication()
+    {
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = require __DIR__ . '/../vendor/laravel/laravel/bootstrap/app.php';
+
+        $app->make(Kernel::class)->bootstrap();
+
+        $app->make('config')->set('services', require __DIR__ . '/config/services.php');
+
+        $app->register(ServiceProvider::class);
+
+        return $app;
     }
 
     /**
