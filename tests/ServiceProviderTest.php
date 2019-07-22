@@ -26,11 +26,9 @@ class ServiceProviderTest extends AbstractTestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->app->make('config')->set('services', require __DIR__ . '/config/services.php');
         $this->service_provider = new ServiceProvider($this->app);
-
-        $stub_config = require __DIR__ . '/config/services.php';
-
-        $this->app->make('config')->set('services', $stub_config);
     }
 
     /**
@@ -43,9 +41,9 @@ class ServiceProviderTest extends AbstractTestCase
     public function testGetCredentialsFromFile(): void
     {
         $this->setUpConfigFile();
-        self::assertEquals(
+        $this->assertEquals(
             Json::decode(\file_get_contents(__DIR__ . '/Stubs/firebase.json')),
-            self::callMethod($this->service_provider, 'getCredentials', [$this->app])
+            $this->callMethod($this->service_provider, 'getCredentials', [$this->app])
         );
     }
 
@@ -60,7 +58,7 @@ class ServiceProviderTest extends AbstractTestCase
         $this->expectExceptionMessage('file does not exist');
 
         $this->setUpConfigFile('');
-        self::callMethod($this->service_provider, 'getCredentials', [$this->app]);
+        $this->callMethod($this->service_provider, 'getCredentials', [$this->app]);
     }
 
     /**
@@ -72,7 +70,7 @@ class ServiceProviderTest extends AbstractTestCase
     {
         $this->expectException(JsonEncodeDecodeException::class);
         $this->setUpConfigFile(__DIR__ . '/Stubs/invalid_firebase.json');
-        self::callMethod($this->service_provider, 'getCredentials', [$this->app]);
+        $this->callMethod($this->service_provider, 'getCredentials', [$this->app]);
     }
 
     /**
@@ -88,9 +86,9 @@ class ServiceProviderTest extends AbstractTestCase
 
         $config->set('services.fcm.driver', 'config');
 
-        self::assertEquals(
+        $this->assertEquals(
             $config->get('services.fcm.drivers.config.credentials', []),
-            self::callMethod($this->service_provider, 'getCredentials', [$this->app])
+            $this->callMethod($this->service_provider, 'getCredentials', [$this->app])
         );
     }
 
@@ -104,7 +102,7 @@ class ServiceProviderTest extends AbstractTestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Fcm driver not set');
 
-        self::callMethod($this->service_provider, 'getCredentials', [$this->app]);
+        $this->callMethod($this->service_provider, 'getCredentials', [$this->app]);
     }
 
     /**
@@ -121,11 +119,11 @@ class ServiceProviderTest extends AbstractTestCase
         $fcm_channel = $this->app->make(FcmChannel::class);
 
         /** @var FcmClient $fcm_client */
-        $fcm_client = self::getProperty($fcm_channel, 'fcm_client');
+        $fcm_client = $this->getObjectAttribute($fcm_channel, 'fcm_client');
 
-        self::assertContains(
+        $this->assertContains(
             'https://fcm.googleapis.com/v1/projects/test/messages:send',
-            self::getProperty($fcm_client, 'endpoint')
+            $this->getObjectAttribute($fcm_client, 'endpoint')
         );
     }
 
@@ -134,6 +132,7 @@ class ServiceProviderTest extends AbstractTestCase
         if ($path === null) {
             $path = __DIR__ . '/Stubs/firebase.json';
         }
+
         /** @var \Illuminate\Config\Repository $config */
         $config = $this->app->make('config');
 

@@ -12,8 +12,6 @@ use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 
 /**
- * Class FcmClientTest.
- *
  * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\FcmClient
  */
 class FcmClientTest extends AbstractTestCase
@@ -43,7 +41,7 @@ class FcmClientTest extends AbstractTestCase
         $this->mock_handler->append($response);
 
         $r = $this->firebase_client->sendMessage(new FcmDeviceReceiver('test'), new FcmMessage);
-        static::assertJson((string) $r->getBody());
+        $this->assertJson((string) $r->getBody());
     }
 
     /**
@@ -72,13 +70,13 @@ class FcmClientTest extends AbstractTestCase
             'empty_array' => [],
         ];
 
-        $filtered_payload = self::callMethod(
+        $filtered_payload = $this->callMethod(
             $this->firebase_client,
             'filterPayload',
             [\array_merge_recursive($unfiltered_payload, $values_to_remove)]
         );
 
-        static::assertEquals($unfiltered_payload, $filtered_payload);
+        $this->assertEquals($unfiltered_payload, $filtered_payload);
     }
 
     /**
@@ -94,7 +92,7 @@ class FcmClientTest extends AbstractTestCase
         $endpoint    = 'test';
         $client      = new FcmClient($http_client, $endpoint);
 
-        static::assertEquals($endpoint, static::getProperty($client, 'endpoint'));
-        static::assertEquals($http_client, static::getProperty($client, 'http_client'));
+        $this->assertEquals($endpoint, $this->getObjectAttribute($client, 'endpoint'));
+        $this->assertEquals($http_client, $this->getObjectAttribute($client, 'http_client'));
     }
 }

@@ -32,8 +32,8 @@ abstract class AbstractPlatformSettingsTest extends AbstractTestCase
 
         $platform_settings->{'set' . Str::camel($property)}($value);
 
-        static::assertEquals($value, static::getProperty($platform_settings, $property));
-        static::assertEquals($value, Arr::get($platform_settings->toArray(), $array_path));
+        $this->assertEquals($value, $this->getObjectAttribute($platform_settings, $property));
+        $this->assertEquals($value, Arr::get($platform_settings->toArray(), $array_path));
     }
 
     /**

@@ -60,17 +60,17 @@ class FcmMessageTest extends AbstractTestCase
     {
         $this->fcm_message->{'set' . Str::title($property)}($value);
 
-        static::assertEquals($value, static::getProperty($this->fcm_message, $property));
+        $this->assertEquals($value, $this->getObjectAttribute($this->fcm_message, $property));
 
         if ($path === null) {
             $path = $property;
         }
 
         if ($value instanceof Arrayable) {
-            static::assertEquals($value, $this->fcm_message->{'get' . Str::title($property)}());
+            $this->assertEquals($value, $this->fcm_message->{'get' . Str::title($property)}());
             $value = $value->toArray();
         }
 
-        static::assertEquals($value, Arr::get($this->fcm_message->toArray(), $path));
+        $this->assertEquals($value, Arr::get($this->fcm_message->toArray(), $path));
     }
 }

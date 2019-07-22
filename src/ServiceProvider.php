@@ -18,12 +18,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->when(FcmChannel::class)
+        $this->app
+            ->when(FcmChannel::class)
             ->needs(FcmClient::class)
             ->give(function (Container $app) {
                 $credentials = $this->getCredentials($app);
 
-                //Build google client
+                // Build google client
                 $google_client = new \Google_Client;
                 $google_client->setAuthConfig($credentials);
                 $google_client->addScope('https://www.googleapis.com/auth/firebase.messaging');

@@ -23,7 +23,7 @@ class FcmDeviceReceiverTest extends AbstractReceiverTest
      */
     public function testGetTarget(): void
     {
-        static::assertEquals($this->target_value, $this->getReceiver()->getToken());
+        $this->assertEquals($this->target_value, $this->getReceiver()->getToken());
     }
 
     /**

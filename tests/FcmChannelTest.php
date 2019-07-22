@@ -33,18 +33,16 @@ class FcmChannelTest extends AbstractTestCase
     public function setUp(): void
     {
         parent::setUp();
+
         $this->firebase_channel = $this->app->make(FcmChannel::class);
     }
 
     /**
      * @covers ::__construct()
-     *
-     * @throws \ReflectionException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testConstruct(): void
     {
-        self::assertInstanceOf(FcmClient::class, self::getProperty($this->firebase_channel, 'fcm_client'));
+        $this->assertInstanceOf(FcmClient::class, $this->getObjectAttribute($this->firebase_channel, 'fcm_client'));
     }
 
     /**
@@ -76,6 +74,7 @@ class FcmChannelTest extends AbstractTestCase
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage('Can\'t convert notification to FCM message');
 
+        /** @var Notification $notification */
         $notification = $this
             ->getMockBuilder(Notification::class)
             ->getMock();
@@ -132,7 +131,7 @@ class FcmChannelTest extends AbstractTestCase
                 ->getMock()
         );
 
-        self::assertCount(0, $history_container);
+        $this->assertCount(0, $history_container);
     }
 
     /**

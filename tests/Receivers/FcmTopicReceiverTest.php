@@ -23,7 +23,7 @@ class FcmTopicReceiverTest extends AbstractReceiverTest
      */
     public function testGetTarget(): void
     {
-        static::assertEquals($this->target_value, $this->getReceiver()->getTopic());
+        $this->assertEquals($this->target_value, $this->getReceiver()->getTopic());
     }
 
     /**

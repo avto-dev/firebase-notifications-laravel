@@ -21,7 +21,7 @@ abstract class AbstractReceiverTest extends AbstractTestCase
      */
     public function testGetConstruct(): void
     {
-        static::assertEquals($this->target_value, self::getProperty($this->getReceiver(), $this->target_name));
+        $this->assertEquals($this->target_value, $this->getObjectAttribute($this->getReceiver(), $this->target_name));
     }
 
     /**
@@ -31,7 +31,7 @@ abstract class AbstractReceiverTest extends AbstractTestCase
      */
     public function testGetTargetArray(): void
     {
-        static::assertEquals([$this->target_name => $this->target_value], $this->getReceiver()->getTarget());
+        $this->assertEquals([$this->target_name => $this->target_value], $this->getReceiver()->getTarget());
     }
 
     /**
