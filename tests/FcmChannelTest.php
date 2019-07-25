@@ -45,7 +45,6 @@ class FcmChannelTest extends AbstractTestCase
     {
 
         $this->expectException(CouldNotSendNotification::class);
-        $this->expectExceptionMessage($error_message = 'This test message');
 
         $notification = new class extends Notification
         {
@@ -63,7 +62,7 @@ class FcmChannelTest extends AbstractTestCase
             }
         };
 
-        $this->mock_handler->append(new Response(418, [], $error_message));
+        $this->mock_handler->append(new Response(418, [], 'This test message'));
         $this->firebase_channel->send($receiver, $notification);
     }
 
