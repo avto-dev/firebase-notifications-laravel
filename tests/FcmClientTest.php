@@ -7,8 +7,8 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 use GuzzleHttp\Psr7\Response;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 use Tarampampam\Wrappers\Frameworks\Laravel5\Facades\Json;
+use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
@@ -75,7 +75,6 @@ class FcmClientTest extends AbstractTestCase
      */
     public function testFilterPayloadForRemoveEmptyValue(): void
     {
-
         $this->mock_handler->append(new Response);
         $unfiltered_payload = [
             'message' => [
