@@ -6,10 +6,10 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use Google_Client;
 use GuzzleHttp\Client;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Tarampampam\Wrappers\Json;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\ServiceProvider;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 /**
@@ -35,8 +35,7 @@ class ServiceProviderTest extends AbstractTestCase
 
         $this->app->make('config')->set('services', require __DIR__ . '/config/services.php');
 
-        $this->google_client_stub = $google_client_stub = new class
-        {
+        $this->google_client_stub = $google_client_stub = new class {
             public $credentials;
 
             public $scope;

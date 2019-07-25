@@ -12,7 +12,7 @@ use AvtoDev\FirebaseNotificationsChannel\Tests\AbstractTestCase;
 abstract class AbstractPlatformSettingsTest extends AbstractTestCase
 {
     /**
-     * Must contains array of array
+     * Must contains array of array.
      *
      * [
      *   [$property, $array_path, $value]

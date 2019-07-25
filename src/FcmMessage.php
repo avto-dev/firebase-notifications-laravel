@@ -123,8 +123,8 @@ class FcmMessage implements Arrayable
      * @param array $data
      *
      * @return self
-     * @example ['name'=>'wrench','mass'=>'1.3kg','count'=>3]
      *
+     * @example ['name'=>'wrench','mass'=>'1.3kg','count'=>3]
      */
     public function setData(array $data): self
     {

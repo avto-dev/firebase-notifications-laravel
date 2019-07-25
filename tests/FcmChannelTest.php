@@ -4,18 +4,17 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
-use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmTopicReceiver;
+use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 
 /**
@@ -43,20 +42,17 @@ class FcmChannelTest extends AbstractTestCase
      */
     public function testConstruct(): void
     {
-
         $this->expectException(CouldNotSendNotification::class);
         $this->expectExceptionMessage($error_message = 'This test message');
 
-        $notification = new class extends Notification
-        {
+        $notification = new class extends Notification {
             public function toFcm()
             {
                 return new FcmMessage;
             }
         };
 
-        $receiver = new class
-        {
+        $receiver = new class {
             public function routeNotificationFor($target)
             {
                 return new FcmDeviceReceiver('awd');

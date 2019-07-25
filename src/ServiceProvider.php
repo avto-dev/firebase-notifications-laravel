@@ -46,12 +46,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @param Container $app
      *
-     * @return array
-     *
      * @throws JsonEncodeDecodeException
      * @throws BindingResolutionException
      * @throws \InvalidArgumentException
      * @throws \LogicException
+     *
+     * @return array
      */
     protected function getCredentials(Container $app): array
     {

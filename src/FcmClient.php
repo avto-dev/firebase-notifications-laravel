@@ -39,9 +39,9 @@ class FcmClient
      * @param FcmNotificationReceiverInterface $receiver
      * @param FcmMessage                       $message
      *
-     * @return \Psr\Http\Message\ResponseInterface
-     *
      * @throws CouldNotSendNotification
+     *
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function sendMessage(FcmNotificationReceiverInterface $receiver, FcmMessage $message)
     {
