@@ -106,17 +106,41 @@ class FcmMessage implements Arrayable
      *
      * An object containing a list of key-value pairs
      *
+     * return array
+     *
      * @example ['name'=>'wrench','mass'=>'1.3kg','count'=>3]
+     */
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    /**
+     * Arbitrary key/value payload.
+     *
+     * An object containing a list of key-value pairs
      *
      * @param array $data
      *
      * @return self
+     * @example ['name'=>'wrench','mass'=>'1.3kg','count'=>3]
+     *
      */
     public function setData(array $data): self
     {
         $this->data = $data;
 
         return $this;
+    }
+
+    /**
+     * The notification's title.
+     *
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     /**
@@ -131,6 +155,16 @@ class FcmMessage implements Arrayable
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * The notification's body text.
+     *
+     * @return string
+     */
+    public function getBody(): string
+    {
+        return $this->body;
     }
 
     /**

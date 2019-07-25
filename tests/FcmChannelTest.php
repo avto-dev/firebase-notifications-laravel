@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
+use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\HandlerStack;
@@ -42,7 +43,28 @@ class FcmChannelTest extends AbstractTestCase
      */
     public function testConstruct(): void
     {
-        $this->assertInstanceOf(FcmClient::class, $this->getObjectAttribute($this->firebase_channel, 'fcm_client'));
+
+        $this->expectException(CouldNotSendNotification::class);
+        $this->expectExceptionMessage($error_message = 'This test message');
+
+        $notification = new class extends Notification
+        {
+            public function toFcm()
+            {
+                return new FcmMessage;
+            }
+        };
+
+        $receiver = new class
+        {
+            public function routeNotificationFor($target)
+            {
+                return new FcmDeviceReceiver('awd');
+            }
+        };
+
+        $this->mock_handler->append(new Response(418, [], $error_message));
+        $this->firebase_channel->send($receiver, $notification);
     }
 
     /**
@@ -55,10 +77,9 @@ class FcmChannelTest extends AbstractTestCase
      */
     public function testSendSuccess(): void
     {
-        $response = new Response(200, [], \json_encode(['message_id' => 'test']));
+        $response = new Response(200, [], json_encode(['message_id' => 'test']));
         $this->mock_handler->append($response);
-        $notification = new class extends Notification implements ShouldQueue {
-        };
+
         $this->firebase_channel->send($this->getNotifiableMock(), $this->getNotificationMock());
     }
 
@@ -92,7 +113,7 @@ class FcmChannelTest extends AbstractTestCase
     {
         $this->expectException(CouldNotSendNotification::class);
 
-        $response = new Response(300, [], \json_encode(['message_id' => 'test']));
+        $response = new Response(300, [], json_encode(['message_id' => 'test']));
         $this->mock_handler->append($response);
 
         $this->firebase_channel->send($this->getNotifiableMock(), $this->getNotificationMock());

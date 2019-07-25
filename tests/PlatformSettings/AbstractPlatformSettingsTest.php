@@ -12,28 +12,28 @@ use AvtoDev\FirebaseNotificationsChannel\Tests\AbstractTestCase;
 abstract class AbstractPlatformSettingsTest extends AbstractTestCase
 {
     /**
+     * Must contains array of array
+     *
+     * [
+     *   [$property, $array_path, $value]
+     * ]
+     *
      * @return array
      */
     abstract public function dataProvider(): array;
 
     /**
-     * @param $property
-     * @param $array_path
-     * @param $value
-     *
-     * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @dataProvider dataProvider
      */
-    public function testSetters($property, $array_path, $value): void
+    public function testSetters(): void
     {
         $platform_settings = $this->getPlatformSetting();
 
-        $platform_settings->{'set' . Str::camel($property)}($value);
+        foreach ($this->dataProvider() as [$property, $array_path, $value]) {
+            $platform_settings->{'set' . Str::camel($property)}($value);
 
-        $this->assertEquals($value, $this->getObjectAttribute($platform_settings, $property));
-        $this->assertEquals($value, Arr::get($platform_settings->toArray(), $array_path));
+            $this->assertEquals($value, Arr::get($platform_settings->toArray(), $array_path));
+        }
     }
 
     /**

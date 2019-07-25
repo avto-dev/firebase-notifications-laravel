@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
+use Google_Client;
+use GuzzleHttp\Client;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Tarampampam\Wrappers\Json;
-use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\ServiceProvider;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
@@ -20,37 +22,74 @@ class ServiceProviderTest extends AbstractTestCase
      */
     protected $service_provider;
 
+    protected $google_client_stub;
+
     /**
      * {@inheritdoc}
+     *
+     * @throws BindingResolutionException
      */
     public function setUp(): void
     {
         parent::setUp();
 
         $this->app->make('config')->set('services', require __DIR__ . '/config/services.php');
+
+        $this->google_client_stub = $google_client_stub = new class
+        {
+            public $credentials;
+
+            public $scope;
+
+            public function setAuthConfig($credentials)
+            {
+                $this->credentials = $credentials;
+            }
+
+            public function addScope($scope)
+            {
+                $this->scope = $scope;
+            }
+
+            public function authorize()
+            {
+                return new Client;
+            }
+        };
+
+        $this->app->bind(Google_Client::class, static function () use ($google_client_stub) {
+            return $google_client_stub;
+        });
+
         $this->service_provider = new ServiceProvider($this->app);
     }
 
     /**
      * @covers ::getCredentials()
+     * @covers ::register()
      *
      * @throws JsonEncodeDecodeException
-     * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws BindingResolutionException
      */
     public function testGetCredentialsFromFile(): void
     {
         $this->setUpConfigFile();
+
+        $this->service_provider->register();
+        $this->app->make(FcmChannel::class);
+
         $this->assertEquals(
             Json::decode(\file_get_contents(__DIR__ . '/Stubs/firebase.json')),
-            $this->callMethod($this->service_provider, 'getCredentials', [$this->app])
+            $this->google_client_stub->credentials
         );
     }
 
     /**
      * @covers ::getCredentials()
+     * @covers ::register()
      *
-     * @throws \ReflectionException
+     * @throws BindingResolutionException
      */
     public function testGetCredentialsFileNotFound(): void
     {
@@ -58,26 +97,30 @@ class ServiceProviderTest extends AbstractTestCase
         $this->expectExceptionMessage('file does not exist');
 
         $this->setUpConfigFile('');
-        $this->callMethod($this->service_provider, 'getCredentials', [$this->app]);
+        $this->service_provider->register();
+        $this->app->make(FcmChannel::class);
     }
 
     /**
      * @covers ::getCredentials()
+     * @covers ::register()
      *
-     * @throws \ReflectionException
+     * @throws BindingResolutionException
      */
     public function testGetCredentialsFromFileInvalidJson(): void
     {
         $this->expectException(JsonEncodeDecodeException::class);
         $this->setUpConfigFile(__DIR__ . '/Stubs/invalid_firebase.json');
-        $this->callMethod($this->service_provider, 'getCredentials', [$this->app]);
+        $this->service_provider->register();
+        $this->app->make(FcmChannel::class);
     }
 
     /**
      * @covers ::getCredentials()
+     * @covers ::register()
      *
-     * @throws \ReflectionException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws BindingResolutionException
      */
     public function testGetCredentialsFromConfig(): void
     {
@@ -86,48 +129,39 @@ class ServiceProviderTest extends AbstractTestCase
 
         $config->set('services.fcm.driver', 'config');
 
+        $this->service_provider->register();
+        $this->app->make(FcmChannel::class);
+
         $this->assertEquals(
             $config->get('services.fcm.drivers.config.credentials', []),
-            $this->callMethod($this->service_provider, 'getCredentials', [$this->app])
+            $this->google_client_stub->credentials
         );
     }
 
     /**
      * @covers ::getCredentials()
+     * @covers ::register()
      *
-     * @throws \ReflectionException
+     * @throws BindingResolutionException
      */
     public function testGetCredentialsDriverNotSet(): void
     {
+        /** @var \Illuminate\Config\Repository $config */
+        $config = $this->app->make('config');
+        $config->set('services.fcm.driver', '');
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Fcm driver not set');
 
-        $this->callMethod($this->service_provider, 'getCredentials', [$this->app]);
+        $this->service_provider->register();
+        $this->app->make(FcmChannel::class);
     }
 
     /**
-     * @covers ::boot()
+     * @param null $path
      *
-     * @throws \ReflectionException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws BindingResolutionException
      */
-    public function testBoot(): void
-    {
-        $this->setUpConfigFile();
-        $this->service_provider->boot();
-
-        $fcm_channel = $this->app->make(FcmChannel::class);
-
-        /** @var FcmClient $fcm_client */
-        $fcm_client = $this->getObjectAttribute($fcm_channel, 'fcm_client');
-
-        $this->assertContains(
-            'https://fcm.googleapis.com/v1/projects/test/messages:send',
-            $this->getObjectAttribute($fcm_client, 'endpoint')
-        );
-    }
-
-    protected function setUpConfigFile($path = null)
+    protected function setUpConfigFile($path = null): void
     {
         if ($path === null) {
             $path = __DIR__ . '/Stubs/firebase.json';

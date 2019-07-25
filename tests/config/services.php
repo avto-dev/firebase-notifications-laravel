@@ -56,6 +56,9 @@ return [
                 */
 
                 'credentials' => [
+                    'type'       => 'service_account',
+                    'project_id' => env('FCM_CREDENTIALS_PROJECT_ID', 'some_id'),
+
                     'private_key_id'              => env(
                         'FCM_CREDENTIALS_PRIVATE_KEY_ID',
                         'da80b3bbceaa554442ad67e6be361a66'

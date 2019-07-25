@@ -10,7 +10,7 @@ use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 /**
  * Class CouldNotSendNotificationTest.
  *
- * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification
+ * @covers \AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification
  */
 class CouldNotSendNotificationTest extends AbstractTestCase
 {

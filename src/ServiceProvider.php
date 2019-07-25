@@ -4,19 +4,21 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel;
 
+use Google_Client;
 use GuzzleHttp\Client;
 use Tarampampam\Wrappers\Json;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
-     * Bootstrap the package services.
+     * Register the package services.
      *
      * @return void
      */
-    public function boot(): void
+    public function register(): void
     {
         $this->app
             ->when(FcmChannel::class)
@@ -24,8 +26,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             ->give(function (Container $app) {
                 $credentials = $this->getCredentials($app);
 
-                // Build google client
-                $google_client = new \Google_Client;
+                /** @var Google_Client $google_client */
+                $google_client = $app->make(Google_Client::class);
                 $google_client->setAuthConfig($credentials);
                 $google_client->addScope('https://www.googleapis.com/auth/firebase.messaging');
 
@@ -44,11 +46,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @param Container $app
      *
+     * @return array
+     *
+     * @throws JsonEncodeDecodeException
+     * @throws BindingResolutionException
      * @throws \InvalidArgumentException
      * @throws \LogicException
-     * @throws JsonEncodeDecodeException
-     *
-     * @return array
      */
     protected function getCredentials(Container $app): array
     {

@@ -7,7 +7,7 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests\PlatformSettings;
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSettings;
 
 /**
- * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSettings
+ * @covers \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSettings
  */
 class AndroidFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
 {

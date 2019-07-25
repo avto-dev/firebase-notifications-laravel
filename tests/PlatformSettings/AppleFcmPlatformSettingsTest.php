@@ -7,7 +7,7 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests\PlatformSettings;
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettings;
 
 /**
- * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettings
+ * @covers \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettings
  */
 class AppleFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
 {

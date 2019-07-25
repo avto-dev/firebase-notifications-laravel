@@ -15,16 +15,6 @@ abstract class AbstractReceiverTest extends AbstractTestCase
 
     /**
      * @covers ::__construct
-     *
-     * @throws \ReflectionException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     */
-    public function testGetConstruct(): void
-    {
-        $this->assertEquals($this->target_value, $this->getObjectAttribute($this->getReceiver(), $this->target_name));
-    }
-
-    /**
      * @covers ::getTarget()
      *
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException

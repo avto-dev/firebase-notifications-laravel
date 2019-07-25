@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace AvtoDev\FirebaseNotificationsChannel;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmNotificationReceiverInterface;
 
 class FcmClient
@@ -38,16 +40,22 @@ class FcmClient
      * @param FcmMessage                       $message
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
+     * @throws CouldNotSendNotification
      */
     public function sendMessage(FcmNotificationReceiverInterface $receiver, FcmMessage $message)
     {
         $message_payload = $this->filterPayload(\array_merge($receiver->getTarget(), $message->toArray()));
 
-        return $this->http_client->post($this->endpoint, [
-            'json' => [
-                'message' => $message_payload,
-            ],
-        ]);
+        try {
+            return $this->http_client->post($this->endpoint, [
+                'json' => [
+                    'message' => $message_payload,
+                ],
+            ]);
+        } catch (GuzzleException $e) {
+            throw new CouldNotSendNotification($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     /**

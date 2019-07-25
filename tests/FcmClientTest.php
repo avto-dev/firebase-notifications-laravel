@@ -4,12 +4,14 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
+use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
+use Tarampampam\Wrappers\Frameworks\Laravel5\Facades\Json;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
+use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 
 /**
  * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\FcmClient
@@ -33,11 +35,14 @@ class FcmClientTest extends AbstractTestCase
     /**
      * @covers ::sendMessage()
      *
+     * @throws CouldNotSendNotification
+     * @throws InvalidArgumentException
+     * @throws JsonEncodeDecodeException
      * @throws \InvalidArgumentException
      */
     public function testSendMessage(): void
     {
-        $response = new Response(200, [], \json_encode(['message_id' => 'test']));
+        $response = new Response(200, [], Json::encode(['message_id' => 'test']));
         $this->mock_handler->append($response);
 
         $r = $this->firebase_client->sendMessage(new FcmDeviceReceiver('test'), new FcmMessage);
@@ -45,36 +50,64 @@ class FcmClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::sendMessage()
+     *
+     * @throws CouldNotSendNotification
+     * @throws \InvalidArgumentException
+     */
+    public function testSendMessageException(): void
+    {
+        $this->expectException(CouldNotSendNotification::class);
+
+        $response = new Response(418, [], 'Test message');
+        $this->mock_handler->append($response);
+
+        $this->firebase_client->sendMessage(new FcmDeviceReceiver('test'), new FcmMessage);
+    }
+
+    /**
      * @covers ::filterPayload()
      *
-     * @throws \ReflectionException
+     * @throws CouldNotSendNotification
      * @throws InvalidArgumentException
+     * @throws JsonEncodeDecodeException
+     * @throws \InvalidArgumentException
      */
     public function testFilterPayloadForRemoveEmptyValue(): void
     {
+
+        $this->mock_handler->append(new Response);
         $unfiltered_payload = [
-            'foo'   => 'bar',
-            'array' => [
-                'foo' => 'bar',
+            'message' => [
+                'token'        => 'some',
+                'data'         => [
+                    'foo' => 'bar',
+                ],
+                'notification' => [
+                    'title' => 'some',
+                ],
+                'apns'         => [
+                    'payload' => [
+                        'aps' => [
+                            'mutable-content' => 0,
+                        ],
+                    ],
+                ],
             ],
         ];
 
-        $values_to_remove = [
-            'array'       => [
-                'empty_value' => '',
-                'null_value'  => null,
-                'empty_array' => [],
-            ],
-            'empty_value' => '',
-            'null_value'  => null,
-            'empty_array' => [],
-        ];
+        $fcm_message = new FcmMessage;
 
-        $filtered_payload = $this->callMethod(
-            $this->firebase_client,
-            'filterPayload',
-            [\array_merge_recursive($unfiltered_payload, $values_to_remove)]
-        );
+        $fcm_message->setTitle('some');
+        $fcm_message->setData([
+            'foo' => 'bar',
+        ]);
+
+        $this->firebase_client->sendMessage(new FcmDeviceReceiver('some'), $fcm_message);
+
+        $filtered_payload = Json::decode($this->mock_handler->getLastRequest()->getBody()->getContents());
+
+        $this->mock_handler->getLastRequest()->getBody()->getContents();
 
         $this->assertEquals($unfiltered_payload, $filtered_payload);
     }
@@ -84,15 +117,15 @@ class FcmClientTest extends AbstractTestCase
      *
      * @throws InvalidArgumentException
      * @throws \InvalidArgumentException
-     * @throws \ReflectionException
      */
     public function testConstructor(): void
     {
-        $http_client = new Client;
-        $endpoint    = 'test';
-        $client      = new FcmClient($http_client, $endpoint);
+        $endpoint = 'test';
+        $this->mock_handler->append(new Response);
 
-        $this->assertEquals($endpoint, $this->getObjectAttribute($client, 'endpoint'));
-        $this->assertEquals($http_client, $this->getObjectAttribute($client, 'http_client'));
+        $client = new FcmClient($this->http_client, $endpoint);
+        $client->sendMessage(new FcmDeviceReceiver(''), new FcmMessage);
+
+        self::assertEquals($endpoint, $this->mock_handler->getLastRequest()->getUri());
     }
 }

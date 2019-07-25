@@ -7,7 +7,7 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests\PlatformSettings;
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings;
 
 /**
- * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings
+ * @covers \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings
  */
 class WebPushFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
 {

@@ -4,16 +4,16 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
-use ReflectionClass;
 use GuzzleHttp\Client;
-use ReflectionException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Handler\MockHandler;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Testing\TestCase;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
+use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\ServiceProvider;
 
-abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
+abstract class AbstractTestCase extends TestCase
 {
     /**
      * @var MockHandler
@@ -21,34 +21,38 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
     protected $mock_handler;
 
     /**
+     * @var Client
+     */
+    protected $http_client;
+
+    /**
      * {@inheritdoc}
+     *
+     * @throws \InvalidArgumentException
      */
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->app->bind(FcmClient::class, function () {
-            $this->mock_handler = new MockHandler;
+        $this->mock_handler = new MockHandler;
 
-            $handler = HandlerStack::create($this->mock_handler);
+        $handler = HandlerStack::create($this->mock_handler);
 
-            $http_client = new Client(['handler' => $handler]);
+        $this->http_client = $http_client = new Client(['handler' => $handler]);
 
+        $binding = static function () use ($http_client) {
             return new FcmClient(
                 $http_client,
                 'https://fcm.googleapis.com/v1/projects/' . config('fcm.project_id') . '/messages:send'
             );
-        });
-    }
+        };
 
-    /**
-     * {@inheritdoc}
-     */
-    public function tearDown(): void
-    {
-        \Mockery::close(); // @todo: delete this
+        $this->app->bind(FcmClient::class, $binding);
 
-        parent::tearDown();
+        $this->app
+            ->when(FcmChannel::class)
+            ->needs(FcmClient::class)
+            ->give($binding);
     }
 
     /**
@@ -68,26 +72,5 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
         $app->register(ServiceProvider::class);
 
         return $app;
-    }
-
-    /**
-     * Calls a instance method (public/private/protected) by its name.
-     *
-     * @param object $object
-     * @param string $method_name
-     * @param array  $args
-     *
-     * @throws ReflectionException
-     *
-     * @return mixed
-     */
-    protected function callMethod($object, string $method_name, array $args = [])
-    {
-        $class = new ReflectionClass($object);
-
-        $method = $class->getMethod($method_name);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $args);
     }
 }
