@@ -13,8 +13,6 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSett
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings;
 
 /**
- * Class FcmMessageTest.
- *
  * @covers \AvtoDev\FirebaseNotificationsChannel\FcmMessage
  */
 class FcmMessageTest extends AbstractTestCase

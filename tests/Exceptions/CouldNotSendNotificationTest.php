@@ -8,8 +8,6 @@ use AvtoDev\FirebaseNotificationsChannel\Tests\AbstractTestCase;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 
 /**
- * Class CouldNotSendNotificationTest.
- *
  * @covers \AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification
  */
 class CouldNotSendNotificationTest extends AbstractTestCase

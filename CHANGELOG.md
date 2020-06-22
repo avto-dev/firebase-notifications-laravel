@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Added
 
 - PHP 7.4 is supported now
+- `void` return type for setters in `AvtoDev\FirebaseNotificationsChannel\PlatformSettings\*` classes
 
 ### Fixed
 

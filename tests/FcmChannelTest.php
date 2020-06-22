@@ -10,6 +10,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use PHPUnit\Framework\MockObject\MockObject;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
@@ -151,7 +152,7 @@ class FcmChannelTest extends AbstractTestCase
     }
 
     /**
-     * @return Notification
+     * @return MockObject|Notifiable
      */
     protected function getNotificationMock()
     {
@@ -171,7 +172,7 @@ class FcmChannelTest extends AbstractTestCase
     }
 
     /**
-     * @return Notifiable
+     * @return MockObject|Notifiable
      */
     protected function getNotifiableMock()
     {
