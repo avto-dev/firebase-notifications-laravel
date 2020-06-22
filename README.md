@@ -2,12 +2,12 @@
   <img src="https://laravel.com/assets/img/components/logo-laravel.svg" alt="Laravel" width="240" />
 </p>
 
-> Here's the latest documentation on Laravel Notifications System: https://laravel.com/docs/master/notifications
+> Here's the latest documentation on Laravel Notifications System: <https://laravel.com/docs/master/notifications>
 
-# FirebaseNotificationsChannel for Laravel applications
+# Firebase notifications channel for Laravel applications
 
 [![Version][badge_packagist_version]][link_packagist]
-[![Version][badge_php_version]][link_packagist]
+[![PHP Version][badge_php_version]][link_packagist]
 [![Build Status][badge_build_status]][link_build_status]
 [![Coverage][badge_coverage]][link_coverage]
 [![Downloads count][badge_downloads_count]][link_packagist]
@@ -32,7 +32,7 @@ This package makes it easy to send notifications using [Firebase][firebase_home]
 ## Installation
 
 ```bash
-$ composer require avto-dev/firebase-notifications-laravel "^1.0"
+$ composer require avto-dev/firebase-notifications-laravel "^2.0"
 ```
 
 > Installed `composer` is required ([how to install composer][getcomposer]).
@@ -52,22 +52,8 @@ return [
         // ...
         AvtoDev\FirebaseNotificationsChannel\ServiceProvider::class,
     ],
-    
+
 ];
-```
-
-If you wants to disable package service-provider auto discover, just add into your composer.json next lines:
-
-```json
-{
-    "extra": {
-        "laravel": {
-            "dont-discover": [
-                "avto-dev/firebase-notifications-laravel"
-            ]
-        }
-    }
-}
 ```
 
 ### Setting up the Firebase service
@@ -97,9 +83,9 @@ return [
     | Here you may specify some configs for FCM.
     |
     */
-    
+
     'fcm' => [
-    
+
         /*
          |----------------------------------------------------------------------
          | Firebase service driver
@@ -110,9 +96,9 @@ return [
          |   - Select `config` option to set up all section in config file
          |
          */
-         
+
         'driver' => env('FCM_DRIVER', 'config'),
-    
+
         /*
          |---------------------------------------------------------------------
          | FCM Drivers
@@ -121,25 +107,25 @@ return [
          | Here are each of the firebase.
          |
          */
-         
+
         'drivers' => [
-        
+
             'file' => [
                 'path' => env('FCM_FILE_PATH', base_path('storage/fcm.json')),
             ],
-            
+
             'config' => [
-            
+
                  /*
                  |------------------------------------------------------------
-                 | Credentials 
+                 | Credentials
                  |------------------------------------------------------------
                  |
-                 | Content of `firebase.json` file in config. Using if 
+                 | Content of `firebase.json` file in config. Using if
                  | `fcm.driver` is `config`. All fields required!
                  |
                  */
-                 
+
                 'credentials'=>[
                      'private_key_id'              => env('FCM_CREDENTIALS_PRIVATE_KEY_ID', 'da80b3bbceaa554442ad67e6be361a66'),
                      'private_key'                 => env('FCM_CREDENTIALS_PRIVATE_KEY', '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n'),
@@ -151,9 +137,9 @@ return [
                      'client_x509_cert_url'        => env('FCM_CREDENTIALS_CLIENT_CERT', 'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-mwax6%40test.iam.gserviceaccount.com'),
                 ],
             ],
-        ],    
+        ],
     ],
-    
+
 ];
 ```
 
@@ -178,8 +164,8 @@ class AccountApproved extends Notification
     public function toFcm($notifiable, $notification)
     {
         return (new FcmMessage)
-            ->title('Approved!')
-            ->body('Your account was approved!');
+            ->setTitle('Approved!')
+            ->setBody('Your account was approved!');
     }
 }
 ```
@@ -197,12 +183,12 @@ class SomeNotifible
 
     /**
     * Reveiver of firebase notification.
-    * 
+    *
     * @return FcmNotificationReceiverInterface
     */
     public function routeNotificationForFcm(): FcmNotificationReceiverInterface
     {
-        return new FcmDeviceReceiver($this->firebase_token);
+        return new FcmDeviceReceiver('firebase_token');
     }
 }
 ```
@@ -253,7 +239,6 @@ If you discover any security related issues, please email `jetexe2@gmail.com` in
 ## Credits
 
 - [jetexe](https://github.com/jetexe)
-- [DmitriyRuppel](https://github.com/DmitriyRuppel)
 - [All Contributors](../../contributors)
 
 ## License
@@ -262,7 +247,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 
 [badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/firebase-notifications-laravel.svg?maxAge=180
 [badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/firebase-notifications-laravel.svg?longCache=true
-[badge_build_status]:https://travis-ci.org/avto-dev/firebase-notifications-laravel.svg?branch=master
+[badge_build_status]:https://img.shields.io/github/workflow/status/avto-dev/firebase-notifications-laravel/tests/master
 [badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/firebase-notifications-laravel/master.svg?maxAge=60
 [badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/firebase-notifications-laravel.svg?maxAge=180
 [badge_license]:https://img.shields.io/packagist/l/avto-dev/firebase-notifications-laravel.svg?longCache=true
