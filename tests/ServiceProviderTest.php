@@ -10,7 +10,6 @@ use Tarampampam\Wrappers\Json;
 use GuzzleHttp\ClientInterface;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\ServiceProvider;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 /**
@@ -66,10 +65,6 @@ class ServiceProviderTest extends AbstractTestCase
     /**
      * @covers ::getCredentials()
      * @covers ::register()
-     *
-     * @throws JsonEncodeDecodeException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     * @throws BindingResolutionException
      */
     public function testGetCredentialsFromFile(): void
     {
@@ -87,8 +82,6 @@ class ServiceProviderTest extends AbstractTestCase
     /**
      * @covers ::getCredentials()
      * @covers ::register()
-     *
-     * @throws BindingResolutionException
      */
     public function testGetCredentialsFileNotFound(): void
     {
@@ -103,8 +96,6 @@ class ServiceProviderTest extends AbstractTestCase
     /**
      * @covers ::getCredentials()
      * @covers ::register()
-     *
-     * @throws BindingResolutionException
      */
     public function testGetCredentialsFromFileInvalidJson(): void
     {
@@ -117,9 +108,6 @@ class ServiceProviderTest extends AbstractTestCase
     /**
      * @covers ::getCredentials()
      * @covers ::register()
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     * @throws BindingResolutionException
      */
     public function testGetCredentialsFromConfig(): void
     {
@@ -140,8 +128,6 @@ class ServiceProviderTest extends AbstractTestCase
     /**
      * @covers ::getCredentials()
      * @covers ::register()
-     *
-     * @throws BindingResolutionException
      */
     public function testGetCredentialsDriverNotSet(): void
     {
@@ -156,9 +142,7 @@ class ServiceProviderTest extends AbstractTestCase
     }
 
     /**
-     * @param null $path
-     *
-     * @throws BindingResolutionException
+     * @param null|string $path
      */
     protected function setUpConfigFile($path = null): void
     {

@@ -12,7 +12,7 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSett
 class AndroidFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
 {
     /**
-     * @return array[]
+     * @return array<array<string>>
      */
     public function dataProvider(): array
     {

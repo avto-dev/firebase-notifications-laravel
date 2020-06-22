@@ -27,8 +27,6 @@ abstract class AbstractTestCase extends TestCase
 
     /**
      * {@inheritdoc}
-     *
-     * @throws \InvalidArgumentException
      */
     public function setUp(): void
     {

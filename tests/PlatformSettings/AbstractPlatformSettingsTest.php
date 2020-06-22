@@ -23,7 +23,7 @@ abstract class AbstractPlatformSettingsTest extends AbstractTestCase
     abstract public function dataProvider(): array;
 
     /**
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @return void
      */
     public function testSetters(): void
     {

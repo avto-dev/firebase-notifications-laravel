@@ -8,8 +8,6 @@ use GuzzleHttp\Psr7\Response;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
 use Tarampampam\Wrappers\Frameworks\Laravel5\Facades\Json;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 
@@ -34,11 +32,6 @@ class FcmClientTest extends AbstractTestCase
 
     /**
      * @covers ::sendMessage()
-     *
-     * @throws CouldNotSendNotification
-     * @throws InvalidArgumentException
-     * @throws JsonEncodeDecodeException
-     * @throws \InvalidArgumentException
      */
     public function testSendMessage(): void
     {
@@ -51,9 +44,6 @@ class FcmClientTest extends AbstractTestCase
 
     /**
      * @covers ::sendMessage()
-     *
-     * @throws CouldNotSendNotification
-     * @throws \InvalidArgumentException
      */
     public function testSendMessageException(): void
     {
@@ -67,11 +57,6 @@ class FcmClientTest extends AbstractTestCase
 
     /**
      * @covers ::filterPayload()
-     *
-     * @throws CouldNotSendNotification
-     * @throws InvalidArgumentException
-     * @throws JsonEncodeDecodeException
-     * @throws \InvalidArgumentException
      */
     public function testFilterPayloadForRemoveEmptyValue(): void
     {
@@ -113,9 +98,6 @@ class FcmClientTest extends AbstractTestCase
 
     /**
      * @covers ::__construct()
-     *
-     * @throws InvalidArgumentException
-     * @throws \InvalidArgumentException
      */
     public function testConstructor(): void
     {

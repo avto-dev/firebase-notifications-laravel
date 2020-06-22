@@ -12,7 +12,7 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettin
 class AppleFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
 {
     /**
-     * @return array[]
+     * @return array<array<string>>
      */
     public function dataProvider(): array
     {

@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 - Minimal required PHP version now is `7.2`
 - Class `AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification` finalized
 - PHPDoc annotations updated
+- Minimal `phpunit/phpunit` version now is `~7.2` (reason - class `PHPUnit\Framework\MockObject\MockObject`)
 
 ### Added
 

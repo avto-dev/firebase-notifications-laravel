@@ -12,14 +12,18 @@ use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmNotificationReceiverInterf
  */
 class FcmDeviceReceiverTest extends AbstractReceiverTest
 {
+    /**
+     * @var string
+     */
     protected $target_name = 'token';
 
+    /**
+     * @var string
+     */
     protected $target_value = 'test_token';
 
     /**
      * @covers ::getToken()
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testGetTarget(): void
     {

@@ -16,7 +16,7 @@ class FcmTopicReceiver implements FcmNotificationReceiverInterface
      *
      * @param string $topic
      */
-    public function __construct($topic)
+    public function __construct(string $topic)
     {
         $this->topic = $topic;
     }
@@ -24,7 +24,7 @@ class FcmTopicReceiver implements FcmNotificationReceiverInterface
     /**
      * @return string
      */
-    public function getTopic()
+    public function getTopic(): string
     {
         return $this->topic;
     }

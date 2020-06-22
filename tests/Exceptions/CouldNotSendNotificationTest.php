@@ -14,8 +14,6 @@ class CouldNotSendNotificationTest extends AbstractTestCase
 {
     /**
      * Check exception message.
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testInvalidNotification(): void
     {

@@ -45,11 +45,7 @@ class FcmMessageTest extends AbstractTestCase
     }
 
     /**
-     * @param $property
-     * @param $value
-     * @param $path
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @return void
      */
     public function testSetters()
     {

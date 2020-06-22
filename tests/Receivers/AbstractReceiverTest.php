@@ -9,15 +9,18 @@ use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmNotificationReceiverInterf
 
 abstract class AbstractReceiverTest extends AbstractTestCase
 {
+    /**
+     * @var string
+     */
     protected $target_name;
 
+    /**
+     * @var string
+     */
     protected $target_value;
 
     /**
-     * @covers ::__construct
-     * @covers ::getTarget()
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @return void
      */
     public function testGetTargetArray(): void
     {

@@ -67,9 +67,6 @@ class FcmChannelTest extends AbstractTestCase
      * Success notification sending.
      *
      * @covers ::send()
-     *
-     * @throws \InvalidArgumentException
-     * @throws CouldNotSendNotification
      */
     public function testSendSuccess(): void
     {
@@ -83,8 +80,6 @@ class FcmChannelTest extends AbstractTestCase
      * Check notification without "toFcm" method.
      *
      * @covers ::send()
-     *
-     * @throws CouldNotSendNotification
      */
     public function testSendNoToFcm(): void
     {
@@ -101,9 +96,6 @@ class FcmChannelTest extends AbstractTestCase
 
     /**
      * @covers ::send()
-     *
-     * @throws CouldNotSendNotification
-     * @throws \InvalidArgumentException
      */
     public function testSendFailed(): void
     {
@@ -117,10 +109,6 @@ class FcmChannelTest extends AbstractTestCase
 
     /**
      * @covers ::send()
-     *
-     * @throws CouldNotSendNotification
-     * @throws \InvalidArgumentException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function testNoSend(): void
     {
