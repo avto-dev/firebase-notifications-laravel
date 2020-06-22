@@ -9,12 +9,14 @@ use Illuminate\Contracts\Support\Arrayable;
 class AndroidFcmPlatformSettings implements Arrayable
 {
     /**
-     * Priority settings.
+     * High priority.
      */
-    public const
-        PRIORITY_HIGH   = 'HIGH';
-    public const
-        PRIORITY_NORMAL = 'NORMAL';
+    public const PRIORITY_HIGH   = 'HIGH';
+
+    /**
+     * Normal priority.
+     */
+    public const PRIORITY_NORMAL = 'NORMAL';
 
     /**
      * An identifier of a group of messages that can be collapsed,
