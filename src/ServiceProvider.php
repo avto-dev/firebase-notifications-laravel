@@ -48,7 +48,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      * @param ConfigRepository $config
      *
      * @throws JsonEncodeDecodeException If config file with credentials has invalid JSON format
-     * @throws InvalidArgumentException If credentials file is missing or FCM driver was not set
+     * @throws InvalidArgumentException  If credentials file is missing or FCM driver was not set
      *
      * @return array<string, string|integer>
      */
