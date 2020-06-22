@@ -12,7 +12,8 @@ class AndroidFcmPlatformSettings implements Arrayable
      * Priority settings.
      */
     public const
-        PRIORITY_HIGH   = 'HIGH',
+        PRIORITY_HIGH   = 'HIGH';
+    public const
         PRIORITY_NORMAL = 'NORMAL';
 
     /**
