@@ -11,14 +11,14 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * HTTP headers defined in webpush protocol. Refer to Webpush protocol for supported headers, e.g. "TTL": "15".
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $headers;
 
     /**
      * Arbitrary key/value payload. If present, it will override google.firebase.fcm.v1.Message.data.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $data;
 
@@ -46,7 +46,7 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * The actions array of the notification as specified in the constructor's options parameter.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $actions;
 
@@ -119,6 +119,8 @@ class WebpushFcmPlatformSettings implements Arrayable
 
     /**
      * Specifies the time at which a notification is created or applicable (past, present, or future).
+     *
+     * @var int
      */
     protected $timestamp;
 
@@ -132,9 +134,9 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * HTTP headers defined in webpush protocol. Refer to Webpush protocol for supported headers, e.g. "TTL": "15".
      *
-     * @param array $headers
+     * @param array<string, mixed> $headers
      */
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers): void
     {
         $this->headers = $headers;
     }
@@ -142,9 +144,9 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * Arbitrary key/value payload. If present, it will override google.firebase.fcm.v1.Message.data.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      */
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         $this->data = $data;
     }
@@ -154,7 +156,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $link
      */
-    public function setLink(string $link)
+    public function setLink(string $link): void
     {
         $this->link = $link;
     }
@@ -164,7 +166,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $title
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -174,7 +176,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $body
      */
-    public function setBody(string $body)
+    public function setBody(string $body): void
     {
         $this->body = $body;
     }
@@ -182,9 +184,9 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * The actions array of the notification as specified in the constructor's options parameter.
      *
-     * @param array $value
+     * @param array<string, mixed> $value
      */
-    public function setActions(array $value)
+    public function setActions(array $value): void
     {
         $this->actions = $value;
     }
@@ -195,7 +197,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $value
      */
-    public function setBadge(string $value)
+    public function setBadge(string $value): void
     {
         $this->badge = $value;
     }
@@ -205,7 +207,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $value
      */
-    public function setDir(string $value)
+    public function setDir(string $value): void
     {
         $this->dir = $value;
     }
@@ -215,7 +217,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $value
      */
-    public function setLang(string $value)
+    public function setLang(string $value): void
     {
         $this->lang = $value;
     }
@@ -225,7 +227,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $value
      */
-    public function setTag(string $value)
+    public function setTag(string $value): void
     {
         $this->tag = $value;
     }
@@ -235,7 +237,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $value
      */
-    public function setIcon(string $value)
+    public function setIcon(string $value): void
     {
         $this->icon = $value;
     }
@@ -246,7 +248,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param string $value
      */
-    public function setImage(string $value)
+    public function setImage(string $value): void
     {
         $this->image = $value;
     }
@@ -256,7 +258,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param bool $value
      */
-    public function setRenotify(bool $value)
+    public function setRenotify(bool $value): void
     {
         $this->renotify = $value;
     }
@@ -267,7 +269,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param bool $value
      */
-    public function setRequireInteraction(bool $value)
+    public function setRequireInteraction(bool $value): void
     {
         $this->requireInteraction = $value;
     }
@@ -278,7 +280,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param bool $value
      */
-    public function setSilent(bool $value)
+    public function setSilent(bool $value): void
     {
         $this->silent = $value;
     }
@@ -288,7 +290,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param int $value
      */
-    public function setTimestamp(int $value)
+    public function setTimestamp(int $value): void
     {
         $this->timestamp = $value;
     }
@@ -298,7 +300,7 @@ class WebpushFcmPlatformSettings implements Arrayable
      *
      * @param bool $value
      */
-    public function setVibrate(bool $value)
+    public function setVibrate(bool $value): void
     {
         $this->vibrate = $value;
     }
@@ -306,7 +308,7 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * Build an array.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

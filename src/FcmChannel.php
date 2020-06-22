@@ -28,12 +28,12 @@ class FcmChannel
     /**
      * Send the given notification.
      *
-     * @param mixed                                  $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param mixed        $notifiable
+     * @param Notification $notification
      *
      * @throws CouldNotSendNotification
      */
-    public function send($notifiable, Notification $notification)
+    public function send($notifiable, Notification $notification): void
     {
         $route_notification_for_fcm = $notifiable->routeNotificationFor('fcm', $notification);
 

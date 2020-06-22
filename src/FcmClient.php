@@ -61,9 +61,9 @@ class FcmClient
     /**
      * Unset all empty data from payload.
      *
-     * @param array $payload
+     * @param array<mixed> $payload
      *
-     * @return array
+     * @return array<mixed>
      */
     protected function filterPayload(array $payload): array
     {

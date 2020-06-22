@@ -9,7 +9,7 @@ interface FcmNotificationReceiverInterface
     /**
      * Get target (token or topic).
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getTarget(): array;
 }

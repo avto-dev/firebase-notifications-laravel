@@ -11,10 +11,16 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 - Maximal `illuminate/*` packages version now is `7.*`
 - CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_
 - Minimal required PHP version now is `7.2`
+- Class `AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification` finalized
+- PHPDoc annotations updated
 
 ### Added
 
 - PHP 7.4 is supported now
+
+### Fixed
+
+- Some documentation errors
 
 ## v2.1.0
 

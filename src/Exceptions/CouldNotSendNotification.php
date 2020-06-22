@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\FirebaseNotificationsChannel\Exceptions;
 
-class CouldNotSendNotification extends \Exception
+final class CouldNotSendNotification extends \Exception
 {
     /**
      * @return static

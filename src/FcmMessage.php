@@ -12,7 +12,7 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSett
 class FcmMessage implements Arrayable
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected $data;
 
@@ -106,7 +106,7 @@ class FcmMessage implements Arrayable
      *
      * An object containing a list of key-value pairs
      *
-     * return array
+     * @return array<string, mixed>
      *
      * @example ['name'=>'wrench','mass'=>'1.3kg','count'=>3]
      */
@@ -120,7 +120,7 @@ class FcmMessage implements Arrayable
      *
      * An object containing a list of key-value pairs
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      *
      * @return self
      *
@@ -204,7 +204,7 @@ class FcmMessage implements Arrayable
     /**
      * Build an array.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

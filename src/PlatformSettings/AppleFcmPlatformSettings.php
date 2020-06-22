@@ -12,7 +12,7 @@ class AppleFcmPlatformSettings implements Arrayable
      * HTTP request headers defined in Apple Push Notification Service.
      * Refer to APNs request headers for supported headers, e.g. "apns-priority": "10".
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $headers;
 
@@ -89,7 +89,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * This key was added in iOS 8.2.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $title_loc_args;
 
@@ -114,7 +114,7 @@ class AppleFcmPlatformSettings implements Arrayable
     /**
      * Variable string values to appear in place of the format specifiers in loc-key.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $loc_args;
 
@@ -141,9 +141,9 @@ class AppleFcmPlatformSettings implements Arrayable
      * HTTP request headers defined in Apple Push Notification Service.
      * Refer to APNs request headers for supported headers, e.g. "apns-priority": "10".
      *
-     * @param array $headers
+     * @param array<string, mixed> $headers
      */
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers): void
     {
         $this->headers = $headers;
     }
@@ -155,7 +155,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param int $badge
      */
-    public function setBadge(int $badge)
+    public function setBadge(int $badge): void
     {
         $this->badge = $badge;
     }
@@ -167,7 +167,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $sound
      */
-    public function setSound(string $sound)
+    public function setSound(string $sound): void
     {
         $this->sound = $sound;
     }
@@ -178,7 +178,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param int $content_available
      */
-    public function setContentAvailable(int $content_available)
+    public function setContentAvailable(int $content_available): void
     {
         $this->content_available = $content_available;
     }
@@ -189,7 +189,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $category
      */
-    public function setCategory(string $category)
+    public function setCategory(string $category): void
     {
         $this->category = $category;
     }
@@ -200,7 +200,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $thread_id
      */
-    public function setThreadId(string $thread_id)
+    public function setThreadId(string $thread_id): void
     {
         $this->thread_id = $thread_id;
     }
@@ -212,7 +212,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $title
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -222,7 +222,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $body
      */
-    public function setBody(string $body)
+    public function setBody(string $body): void
     {
         $this->body = $body;
     }
@@ -235,7 +235,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $title_loc_key
      */
-    public function setTitleLocKey(string $title_loc_key)
+    public function setTitleLocKey(string $title_loc_key): void
     {
         $this->title_loc_key = $title_loc_key;
     }
@@ -245,9 +245,9 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * This key was added in iOS 8.2.
      *
-     * @param string[] $title_loc_args
+     * @param array<string> $title_loc_args
      */
-    public function setTitleLocArgs(array $title_loc_args)
+    public function setTitleLocArgs(array $title_loc_args): void
     {
         $this->title_loc_args = $title_loc_args;
     }
@@ -259,7 +259,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $action_loc_key
      */
-    public function setActionLocKey(string $action_loc_key)
+    public function setActionLocKey(string $action_loc_key): void
     {
         $this->action_loc_key = $action_loc_key;
     }
@@ -271,7 +271,7 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $loc_key
      */
-    public function setLocKey(string $loc_key)
+    public function setLocKey(string $loc_key): void
     {
         $this->loc_key = $loc_key;
     }
@@ -279,9 +279,9 @@ class AppleFcmPlatformSettings implements Arrayable
     /**
      * Variable string values to appear in place of the format specifiers in loc-key.
      *
-     * @param string[] $loc_args
+     * @param array<string> $loc_args
      */
-    public function setLocArgs(array $loc_args)
+    public function setLocArgs(array $loc_args): void
     {
         $this->loc_args = $loc_args;
     }
@@ -294,12 +294,12 @@ class AppleFcmPlatformSettings implements Arrayable
      *
      * @param string $launch_image
      */
-    public function setLaunchImage(string $launch_image)
+    public function setLaunchImage(string $launch_image): void
     {
         $this->launch_image = $launch_image;
     }
 
-    public function setMutableContent(bool $mutable_content)
+    public function setMutableContent(bool $mutable_content): void
     {
         $this->mutable_content = $mutable_content;
     }
@@ -307,7 +307,7 @@ class AppleFcmPlatformSettings implements Arrayable
     /**
      * Build an array.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
