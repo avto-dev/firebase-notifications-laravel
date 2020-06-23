@@ -20,7 +20,6 @@ abstract class AbstractReceiverTest extends AbstractTestCase
     protected $target_value;
 
     /**
-     *
      * @covers ::__construct
      * @covers ::getTarget()
      *
