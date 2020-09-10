@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use GuzzleHttp\Psr7\Response;
+use Tarampampam\Wrappers\Json;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
-use Tarampampam\Wrappers\Frameworks\Laravel5\Facades\Json;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
 use AvtoDev\FirebaseNotificationsChannel\Exceptions\CouldNotSendNotification;
 
