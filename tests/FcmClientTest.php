@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use GuzzleHttp\Psr7\Response;
-use Tarampampam\Wrappers\Json;
 use AvtoDev\FirebaseNotificationsChannel\FcmClient;
 use AvtoDev\FirebaseNotificationsChannel\FcmMessage;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmDeviceReceiver;
@@ -35,7 +34,7 @@ class FcmClientTest extends AbstractTestCase
      */
     public function testSendMessage(): void
     {
-        $response = new Response(200, [], Json::encode(['message_id' => 'test']));
+        $response = new Response(200, [], \json_encode(['message_id' => 'test']));
         $this->mock_handler->append($response);
 
         $r = $this->firebase_client->sendMessage(new FcmDeviceReceiver('test'), new FcmMessage);
@@ -89,7 +88,7 @@ class FcmClientTest extends AbstractTestCase
 
         $this->firebase_client->sendMessage(new FcmDeviceReceiver('some'), $fcm_message);
 
-        $filtered_payload = Json::decode($this->mock_handler->getLastRequest()->getBody()->getContents());
+        $filtered_payload = \json_decode($this->mock_handler->getLastRequest()->getBody()->getContents(), true);
 
         $this->mock_handler->getLastRequest()->getBody()->getContents();
 

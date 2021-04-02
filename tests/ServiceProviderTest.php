@@ -6,11 +6,9 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests;
 
 use Google_Client;
 use GuzzleHttp\Client;
-use Tarampampam\Wrappers\Json;
 use GuzzleHttp\ClientInterface;
 use AvtoDev\FirebaseNotificationsChannel\FcmChannel;
 use AvtoDev\FirebaseNotificationsChannel\ServiceProvider;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 /**
  * @coversDefaultClass \AvtoDev\FirebaseNotificationsChannel\ServiceProvider
@@ -74,7 +72,7 @@ class ServiceProviderTest extends AbstractTestCase
         $this->app->make(FcmChannel::class);
 
         $this->assertEquals(
-            Json::decode(\file_get_contents(__DIR__ . '/Stubs/firebase.json')),
+            \json_decode(\file_get_contents(__DIR__ . '/Stubs/firebase.json'), true),
             $this->google_client_stub->credentials
         );
     }
@@ -99,7 +97,7 @@ class ServiceProviderTest extends AbstractTestCase
      */
     public function testGetCredentialsFromFileInvalidJson(): void
     {
-        $this->expectException(JsonEncodeDecodeException::class);
+        $this->expectException(\ErrorException::class);
         $this->setUpConfigFile(__DIR__ . '/Stubs/invalid_firebase.json');
         $this->service_provider->register();
         $this->app->make(FcmChannel::class);

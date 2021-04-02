@@ -7,9 +7,7 @@ namespace AvtoDev\FirebaseNotificationsChannel;
 use Google_Client;
 use GuzzleHttp\Client;
 use InvalidArgumentException;
-use Tarampampam\Wrappers\Json;
 use Illuminate\Contracts\Container\Container;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
@@ -47,7 +45,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @param ConfigRepository $config
      *
-     * @throws JsonEncodeDecodeException If config file with credentials has invalid JSON format
      * @throws InvalidArgumentException  If credentials file is missing or FCM driver was not set
      *
      * @return array<string, string|integer>
@@ -63,7 +60,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 throw new InvalidArgumentException('file does not exist');
             }
 
-            $credentials = (array) Json::decode((string) \file_get_contents($credentials_path));
+            $credentials = (array) \json_decode((string) \file_get_contents($credentials_path), true);
         } elseif ($config_driver === 'config') {
             $credentials = (array) $config->get('services.fcm.drivers.config.credentials', []);
         } else {
