@@ -97,7 +97,7 @@ class ServiceProviderTest extends AbstractTestCase
      */
     public function testGetCredentialsFromFileInvalidJson(): void
     {
-        $this->expectException(\ErrorException::class);
+        $this->expectException(\JsonException::class);
         $this->setUpConfigFile(__DIR__ . '/Stubs/invalid_firebase.json');
         $this->service_provider->register();
         $this->app->make(FcmChannel::class);

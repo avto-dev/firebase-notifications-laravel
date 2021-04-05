@@ -45,6 +45,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @param ConfigRepository $config
      *
+     * @throws \JsonException
+     *
      * @throws InvalidArgumentException  If credentials file is missing or FCM driver was not set
      *
      * @return array<string, string|integer>
@@ -60,7 +62,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 throw new InvalidArgumentException('file does not exist');
             }
 
-            $credentials = (array) \json_decode((string) \file_get_contents($credentials_path), true);
+            $credentials = (array) \json_decode((string) \file_get_contents($credentials_path), true, 512,
+                JSON_THROW_ON_ERROR);
         } elseif ($config_driver === 'config') {
             $credentials = (array) $config->get('services.fcm.drivers.config.credentials', []);
         } else {
