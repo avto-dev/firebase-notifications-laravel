@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Dependency `tarampampam/wrappers-php` because this package was deprecated and removed
 
+### Changed
+
+- Minimal require PHP version now is `7.3`
+
 ## v2.4.0
 
 ### Added
