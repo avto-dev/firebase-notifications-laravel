@@ -35,6 +35,10 @@ class FcmChannel
      */
     public function send($notifiable, Notification $notification): void
     {
+        /** @var object $notifiable */
+        if (! \method_exists($notifiable, 'routeNotificationFor')) {
+            return;
+        }
         $route_notification_for_fcm = $notifiable->routeNotificationFor('fcm', $notification);
 
         if (! ($route_notification_for_fcm instanceof FcmNotificationReceiverInterface)) {

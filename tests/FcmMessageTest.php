@@ -25,7 +25,7 @@ class FcmMessageTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -47,7 +47,7 @@ class FcmMessageTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testSetters()
+    public function testSetters(): void
     {
         foreach ($this->dataProvider() as [$property, $value, $path]) {
             $this->fcm_message->{'set' . Str::title($property)}($value);

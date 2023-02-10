@@ -11,7 +11,7 @@ class WebpushFcmPlatformSettings implements Arrayable
     /**
      * HTTP headers defined in webpush protocol. Refer to Webpush protocol for supported headers, e.g. "TTL": "15".
      *
-     * @var array<string, string>
+     * @var array<string, mixed>
      */
     protected $headers;
 

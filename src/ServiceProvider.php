@@ -23,7 +23,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             ->when(FcmChannel::class)
             ->needs(FcmClient::class)
             ->give(function (Container $app) {
-                $credentials = $this->getCredentials($app->make('config'));
+                /** @var ConfigRepository $config */
+                $config = $app->make(ConfigRepository::class);
+
+                $credentials = $this->getCredentials($config);
 
                 /** @var Google_Client $google_client */
                 $google_client = $app->make(Google_Client::class);
@@ -56,6 +59,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $config_driver = $config->get('services.fcm.driver');
 
         if ($config_driver === 'file') {
+            /** @var string $credentials_path */
             $credentials_path = $config->get('services.fcm.drivers.file.path', '');
 
             if (! \file_exists($credentials_path)) {
@@ -70,6 +74,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             throw new InvalidArgumentException('Fcm driver not set');
         }
 
+        /** @var array<string, integer|string> */
         return $credentials;
     }
 }

@@ -23,7 +23,7 @@ class FcmClientTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->firebase_client = $this->app->make(FcmClient::class);
@@ -106,6 +106,6 @@ class FcmClientTest extends AbstractTestCase
         $client = new FcmClient($this->http_client, $endpoint);
         $client->sendMessage(new FcmDeviceReceiver(''), new FcmMessage);
 
-        self::assertEquals($endpoint, $this->mock_handler->getLastRequest()->getUri());
+        $this->assertEquals($endpoint, $this->mock_handler->getLastRequest()->getUri());
     }
 }
