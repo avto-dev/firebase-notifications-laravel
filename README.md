@@ -246,8 +246,8 @@ If you discover any security related issues, please email `jetexe2@gmail.com` in
 This is open-sourced software licensed under the [MIT License][link_license].
 
 [badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/firebase-notifications-laravel.svg?maxAge=180
-[badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/firebase-notifications-laravel.svg?longCache=true
 [badge_build_status]:https://img.shields.io/github/actions/workflow/status/avto-dev/firebase-notifications-laravel/tests.yml
+[badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/firebase-notifications-laravel.svg?longCache=true
 [badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/firebase-notifications-laravel/master.svg?maxAge=60
 [badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/firebase-notifications-laravel.svg?maxAge=180
 [badge_license]:https://img.shields.io/packagist/l/avto-dev/firebase-notifications-laravel.svg?longCache=true
