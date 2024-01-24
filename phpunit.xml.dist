@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" bootstrap="./tests/bootstrap.php" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" forceCoversAnnotation="true" stopOnFailure="false">
-  <coverage processUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">./src</directory>
-    </include>
-    <exclude>
-      <directory>./vendor</directory>
-    </exclude>
-    <report>
-      <clover outputFile="./coverage/clover.xml"/>
-      <text outputFile="php://stdout" showUncoveredFiles="false"/>
-      <xml outputDirectory="./coverage/xml"/>
-    </report>
-  </coverage>
-  <testsuites>
-    <testsuite name="Unit">
-      <directory suffix="Test.php">./tests</directory>
-    </testsuite>
-  </testsuites>
-  <logging>
-    <!--log type="coverage-html" target="./coverage/html"/-->
-  </logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="./tests/bootstrap.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         requireCoverageMetadata="true">
+    <coverage>
+        <report>
+            <clover outputFile="./coverage/php/clover.xml"/>
+            <text outputFile="php://stdout"/>
+            <xml outputDirectory="./coverage/php/xml"/>
+        </report>
+    </coverage>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <directory>./vendor</directory>
+        </exclude>
+    </source>
 </phpunit>

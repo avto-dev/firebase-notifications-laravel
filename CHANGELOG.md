@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## Unreleased
+
+### Added
+
+- Support Laravel 10
+
+### Changed
+
+- Up minimal `PHP` version to `8.1`
+- Up minimal `phpunit` version to `10.5`
+- Up minimal `phpstan` version to `1.10`
+
 ## v2.6.0
 
 ### Changed

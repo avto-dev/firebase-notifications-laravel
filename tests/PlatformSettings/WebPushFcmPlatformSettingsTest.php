@@ -9,7 +9,7 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSett
 /**
  * @covers \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings
  */
-class WebPushFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
+class WebPushFcmPlatformSettingsTest extends AbstractPlatformSettingsTestCase
 {
     /**
      * @return array<array<string>>

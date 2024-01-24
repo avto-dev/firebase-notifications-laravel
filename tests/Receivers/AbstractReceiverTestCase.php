@@ -7,7 +7,7 @@ namespace AvtoDev\FirebaseNotificationsChannel\Tests\Receivers;
 use AvtoDev\FirebaseNotificationsChannel\Tests\AbstractTestCase;
 use AvtoDev\FirebaseNotificationsChannel\Receivers\FcmNotificationReceiverInterface;
 
-abstract class AbstractReceiverTest extends AbstractTestCase
+abstract class AbstractReceiverTestCase extends AbstractTestCase
 {
     /**
      * @var string

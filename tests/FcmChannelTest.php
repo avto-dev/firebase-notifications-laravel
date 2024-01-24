@@ -128,11 +128,11 @@ class FcmChannelTest extends AbstractTestCase
         $fcm_channel->send(
             $this
                 ->getMockBuilder(Notifiable::class)
-                ->setMethods(['routeNotificationForFcm'])
+                ->addMethods(['routeNotificationForFcm'])
                 ->getMockForTrait(),
             $this
                 ->getMockBuilder(Notification::class)
-                ->setMethods(['toFcm'])
+                ->addMethods(['toFcm'])
                 ->getMock()
         );
 
@@ -146,7 +146,7 @@ class FcmChannelTest extends AbstractTestCase
     {
         $notification = $this
             ->getMockBuilder(Notification::class)
-            ->setMethods(['toFcm'])
+            ->addMethods(['toFcm'])
             ->getMock();
 
         $notification
@@ -166,7 +166,7 @@ class FcmChannelTest extends AbstractTestCase
     {
         $notifiable = $this
             ->getMockBuilder(Notifiable::class)
-            ->setMethods(['routeNotificationForFcm'])
+            ->addMethods(['routeNotificationForFcm'])
             ->getMockForTrait();
 
         $notifiable

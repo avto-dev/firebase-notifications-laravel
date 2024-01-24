@@ -9,7 +9,7 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettin
 /**
  * @covers \AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettings
  */
-class AppleFcmPlatformSettingsTest extends AbstractPlatformSettingsTest
+class AppleFcmPlatformSettingsTest extends AbstractPlatformSettingsTestCase
 {
     /**
      * @return array<array<string>>

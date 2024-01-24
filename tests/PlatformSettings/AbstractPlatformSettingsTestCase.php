@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Arrayable;
 use AvtoDev\FirebaseNotificationsChannel\Tests\AbstractTestCase;
 
-abstract class AbstractPlatformSettingsTest extends AbstractTestCase
+abstract class AbstractPlatformSettingsTestCase extends AbstractTestCase
 {
     /**
      * Must contains array of array.
