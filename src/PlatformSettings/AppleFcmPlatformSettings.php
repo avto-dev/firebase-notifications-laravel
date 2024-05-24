@@ -6,6 +6,9 @@ namespace AvtoDev\FirebaseNotificationsChannel\PlatformSettings;
 
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class AppleFcmPlatformSettings implements Arrayable
 {
     /**
