@@ -9,6 +9,9 @@ use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AppleFcmPlatformSettin
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\AndroidFcmPlatformSettings;
 use AvtoDev\FirebaseNotificationsChannel\PlatformSettings\WebpushFcmPlatformSettings;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class FcmMessage implements Arrayable
 {
     /**
