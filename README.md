@@ -210,7 +210,7 @@ Field     | Type
 
 ## Testing
 
-For package testing we use `phpunit` framework. Just write into your terminal _(installed `docker-ce` is required)_:
+For package testing we use `phpunit` framework and `docker` with `compose` plugin as develop environment. So, just write into your terminal after repository cloning:
 
 ``` bash
 $ git clone git@github.com:avto-dev/firebase-notifications-laravel.git ./firebase-notifications-laravel && cd $_
